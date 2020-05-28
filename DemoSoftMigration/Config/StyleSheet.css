@@ -40,9 +40,6 @@
 
 /*#Region  Main container*/
 
-#ASPxGridView {
-    overflow-y: hidden;
-}
 
 .DatabaseActionsTable {
     overflow-x: auto;

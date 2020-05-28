@@ -6,7 +6,6 @@ using System.Web.UI.WebControls;
 using DevExpress.Export;
 using DevExpress.Web;
 using DevExpress.Web.Internal.Dialogs;
-using IFileManager.SettingsAdaptivity;
 
 
 namespace DemoSoftMigration.Pages
@@ -42,10 +41,10 @@ namespace DemoSoftMigration.Pages
             }
         }
 
-            #region SQL Commands
+        #region SQL Commands
 
-            #region Create of datasource strings
-            private SqlConnection CreateConnectionstring()
+        #region Create of datasource strings
+        private SqlConnection CreateConnectionstring()
         {
             SqlConnectionStringBuilder StringBuilder = new SqlConnectionStringBuilder();
             StringBuilder["Data Source"] = @"(LocalDB)\MSSQLLocalDB";
