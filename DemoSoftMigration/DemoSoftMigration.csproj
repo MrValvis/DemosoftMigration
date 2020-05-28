@@ -249,6 +249,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GridUtils.cs" />
+    <Compile Include="IFileManager\SettingsAdaptivity\Enabled.cs" />
     <Compile Include="Pages\WebForm.aspx.cs">
       <DependentUpon>WebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

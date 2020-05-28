@@ -49,7 +49,8 @@
         </nav>
 
         <div class="Content">
-            <div class="DatabaseActionsMenu">
+            <%-- TO BE DELETED --%>
+            <%--<div class="DatabaseActionsMenu">
                 <table class="DatabaseActionsTable">
                     <tr>
                         <th>
@@ -67,20 +68,63 @@
                         <th>
                             <img src="../Resources/export.png" class="DatabaseActionImage" /><asp:DropDownList ID="DropDownList1" runat="server">
                             </asp:DropDownList>Export</th>
-
                     </tr>
                 </table>
-            </div>
+            </div>--%>
 
             <div class="GridView">
-                <dx:ASPxGridView ID="ASPxGridViewData" runat="server" EnableTheming="True" Theme="iOS" Cursor="auto">
+                <dx:ASPxGridView ID="ASPxGridViewData" runat="server" EnableTheming="True" Theme="iOS" Cursor="auto" OnToolbarItemClick="Grid_ToolbarItemClick">
                     <SettingsPager AlwaysShowPager="True" NumericButtonCount="4">
                         <PageSizeItemSettings Items="10, 20, 40, 100, 200" Visible="True">
                         </PageSizeItemSettings>
                     </SettingsPager>
+
+                    <Toolbars>
+                        <dx:GridViewToolbar>
+                            <SettingsAdaptivity Enabled="true" EnableCollapseRootItemsToIcons="true" />
+                            <Items>
+                                <dx:GridViewToolbarItem Command="New" />
+                                <dx:GridViewToolbarItem Command="Edit" />
+                                <dx:GridViewToolbarItem Command="Delete" />
+                                <dx:GridViewToolbarItem Command="Refresh" BeginGroup="true" AdaptivePriority="2" />
+                                <dx:GridViewToolbarItem Text="Export to" Image-IconID="actions_download_16x16office2013" BeginGroup="true" AdaptivePriority="1">
+                                    <Items>
+                                        <dx:GridViewToolbarItem Command="ExportToPdf" />
+                                        <dx:GridViewToolbarItem Command="ExportToDocx" />
+                                        <dx:GridViewToolbarItem Command="ExportToRtf" />
+                                        <dx:GridViewToolbarItem Command="ExportToCsv" />
+                                        <dx:GridViewToolbarItem Command="ExportToXls" Text="Export to XLS(DataAware)" />
+                                        <dx:GridViewToolbarItem Name="CustomExportToXLS" Text="Export to XLS(WYSIWYG)" Image-IconID="export_exporttoxls_16x16office2013" />
+                                        <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Export to XLSX(DataAware)" />
+                                        <dx:GridViewToolbarItem Name="CustomExportToXLSX" Text="Export to XLSX(WYSIWYG)" Image-IconID="export_exporttoxlsx_16x16office2013" />
+                                    </Items>
+                                </dx:GridViewToolbarItem>
+                                <dx:GridViewToolbarItem Alignment="Right">
+                                    <Template>
+                                        <dx:ASPxButtonEdit ID="tbToolbarSearch" runat="server" NullText="Search..." Height="100%">
+                                            <Buttons>
+                                                <dx:SpinButtonExtended Image-IconID="find_find_16x16gray" />
+                                            </Buttons>
+                                        </dx:ASPxButtonEdit>
+                                    </Template>
+                                </dx:GridViewToolbarItem>
+                            </Items>
+                        </dx:GridViewToolbar>
+                    </Toolbars>
+
+
+
+
                     <Settings ShowHeaderFilterButton="True" />
                     <SettingsBehavior AllowSelectByRowClick="True" />
                     <SettingsSearchPanel Visible="True" />
+
+                    <%-- toolbar --%>
+                    <SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
+                    <SettingsBehavior AllowFocusedRow="true" />
+                    <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" />
+                    <ClientSideEvents ToolbarItemClick="OnToolbarItemClick" />
+                    <%-- end of toolbar --%>
                 </dx:ASPxGridView>
             </div>
         </div>
