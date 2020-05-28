@@ -1,0 +1,124 @@
+﻿/*#region Menu-navbar*/
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #1a293c;
+    color: #99ffcc;
+    padding: 1%;
+    font-size: 1.2em;
+    border: 0;
+    box-shadow: 0px 4px 7px -1px rgba(138,138,138,1);
+}
+
+.navbar-brand {
+    float: left;
+    min-height: 50px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.navbar-brand img {
+    background-color: #cccccc;
+    height: 55px;
+    width: 180px;
+    }
+
+.navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus, navbar-inverse .navbar-nav .active a:hover {
+    color: #99ddff;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav li a {
+    cursor: pointer;
+    color: #d9d9d9;
+}
+
+#NavbarMenuBurger {
+    margin-top: 10px;
+}
+/*#EndRegion  Menu-navbar*/
+
+/*#Region  Main container*/
+
+#ASPxGridView {
+    overflow-y: hidden;
+}
+
+.DatabaseActionsTable {
+    overflow-x: auto;
+    padding: 0 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.DatabaseActionsTable th {
+    padding-left: 3%;
+    }
+
+.DatabaseActionImage {
+    min-width: 10%;
+    min-height: 10%-10px;
+    max-width: 30px;
+    max-height: 20px;
+}
+
+/*#EndRegion  Main container*/
+
+
+/*#Region  Footer*/
+footer {
+    position: relative;
+    width: 100%;
+    padding: 5%;
+    background-color: #384861;
+    color: #FFF;
+    cursor: default;
+}
+
+footer h3 {
+    list-style-type: none;
+    cursor: default;
+    }
+
+footer li {
+    font-size: 15px;
+    font-family: Arial;
+    }
+/*#Region  ChangeLanguage*/
+.ContactInfo, .LangSelect {
+    cursor: default;
+    list-style-type: none;
+    opacity: 0.7;
+}
+
+.LangSelect:hover {
+    cursor: pointer;
+    opacity: 1;
+    color: #2dc3e0;
+    }
+/*#EndRegion  ChangeLanguage*/
+
+/*#Region  Social media icons*/
+.fa {
+    padding: 15px;
+    font-size: 25px;
+    color: #FFF;
+}
+
+.fa:hover {
+    color: #2dc3e0;
+    text-decoration: none;
+    transform: scale(1.2);
+    }
+/*#EndRegion  Social media icons*/
+
+#CDT {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: #49576E;
+    color: #FFF;
+    font-size: 1em;
+    text-align: center;
+}
+/*#EndRegion Footer*/
