@@ -73,8 +73,13 @@
             </div>
 
             <div class="GridView">
-                <dx:ASPxGridView ID="ASPxGridViewData" runat="server" EnableTheming="True" Theme="iOS">
+                <dx:ASPxGridView ID="ASPxGridViewData" runat="server" EnableTheming="True" Theme="iOS" Cursor="auto">
+                    <SettingsPager AlwaysShowPager="True" NumericButtonCount="4">
+                        <PageSizeItemSettings Items="10, 20, 40, 100, 200" Visible="True">
+                        </PageSizeItemSettings>
+                    </SettingsPager>
                     <Settings ShowHeaderFilterButton="True" />
+                    <SettingsBehavior AllowSelectByRowClick="True" />
                     <SettingsSearchPanel Visible="True" />
                 </dx:ASPxGridView>
             </div>
