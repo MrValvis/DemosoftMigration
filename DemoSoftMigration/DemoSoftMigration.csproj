@@ -164,6 +164,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Pages\Privacy.aspx" />
+    <Content Include="Pages\Terms.aspx" />
     <Content Include="Resources\.vs\ProjectSettings.json" />
     <Content Include="Resources\.vs\Resources\v15\.suo" />
     <Content Include="Resources\.vs\slnx.sqlite" />
@@ -249,7 +251,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GridUtils.cs" />
-    <Compile Include="IFileManager\SettingsAdaptivity\Enabled.cs" />
+    <Compile Include="Pages\Privacy.aspx.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Privacy.aspx.designer.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Terms.aspx.cs">
+      <DependentUpon>Terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Terms.aspx.designer.cs">
+      <DependentUpon>Terms.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WebForm.aspx.cs">
       <DependentUpon>WebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

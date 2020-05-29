@@ -19,7 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    
+    <script src="../Config/JavaScript.js"></script>
+
 
     <title>Demosoft</title>
 </head>
@@ -39,10 +40,10 @@
                 </div>
                 <div class="collapse navbar-collapse" id="NavbarMenuBurger">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a onclick="CPH();">Αρχική</a></li>
-                        <%--<li><a onclick="CPA();">Σχετικά με εμάς</a></li>
-                        <li><a onclick="CPS();">Project's</a></li>
-                        <li><a onclick="CPC();">Επικοινωνία</a></li>--%>
+                        <li ><a onclick="DatagridHelp();">Βοήθεια</a></li>
+                        <li><a onclick="CPTerms();">Όροι χρήσης</a></li>
+                        <li><a onclick="CPPolicy();">Πολιτική απορρήτου</a></li>
+                        <%-- <li><a onclick="CPC();">Επικοινωνία</a></li>--%>
                     </ul>
                 </div>
             </div>
@@ -122,9 +123,9 @@
 
 
 
-        <div class="DataGridDiv" style="width: 100%;word-wrap: break-word;table-layout: fixed;font-size: smaller;overflow-x: scroll;overflow-y: hidden;">
+        <div class="DataGridDiv" style="width: 100%; word-wrap: break-word; table-layout: fixed; font-size: smaller; overflow-x: scroll; overflow-y: hidden;">
 
-            <dx:ASPxGridView ID="ASPxGridViewData" runat="server" ClientInstanceName="ASPxGridViewData" EnableTheming="True" Theme="iOS" Cursor="auto" OnToolbarItemClick="Grid_ToolbarItemClick" CssClass="cssDatagridClass">
+            <dx:ASPxGridView ID="ASPxGridViewData" runat="server" ClientInstanceName="ASPxGridViewData" EnableTheming="True" Theme="iOS" Cursor="auto" OnToolbarItemClick="Grid_ToolbarItemClick" KeyFieldName="OrderID">
                 <SettingsPager AlwaysShowPager="True" NumericButtonCount="4">
                     <PageSizeItemSettings Items="10, 20, 40, 100, 200" Visible="True">
                     </PageSizeItemSettings>
@@ -133,25 +134,33 @@
                 <SettingsBehavior AllowSelectByRowClick="True" />
                 <SettingsSearchPanel Visible="True" />
                 <Toolbars>
-                    <dx:GridViewToolbar Name="MenuItems">
+                    <dx:GridViewToolbar>
+                        <SettingsAdaptivity Enabled="true" EnableCollapseRootItemsToIcons="true" />
                         <Items>
-                            <dx:GridViewToolbarItem Name="Add" Text="Add" ToolTip="Allow to add new entry">
-                            </dx:GridViewToolbarItem>
-                            <dx:GridViewToolbarItem Name="Modify" Text="Modify">
-                            </dx:GridViewToolbarItem>
-                            <dx:GridViewToolbarItem Name="Delete" Text="Delete">
-                            </dx:GridViewToolbarItem>
-                            <dx:GridViewToolbarItem Name="Refresh" Text="Refresh">
-                            </dx:GridViewToolbarItem>
-                            <dx:GridViewToolbarItem Name="History" Text="History">
-                            </dx:GridViewToolbarItem>
-                            <dx:GridViewToolbarItem Name="Export" Text="Export">
+                            <dx:GridViewToolbarItem Name="Add" Text="Add" ToolTip="Allow to add a new entry" />
+                            <dx:GridViewToolbarItem Name="Modify" Text="Modify" Command="Edit" />
+                            <dx:GridViewToolbarItem Name="Delete" Text="Delete" Command="Delete" />
+                            <dx:GridViewToolbarItem Name="Refresh" Text="Refresh" Command="Refresh" />
+                            <dx:GridViewToolbarItem Name="Custom" Text="Custom" Command="Custom" />
+                            <dx:GridViewToolbarItem Text="Export to" Image-IconID="actions_download_16x16office2013" BeginGroup="true" AdaptivePriority="1">
+                                <Items>
+                                    <dx:GridViewToolbarItem Command="ExportToPdf" />
+                                    <dx:GridViewToolbarItem Command="ExportToDocx" />
+                                    <dx:GridViewToolbarItem Command="ExportToRtf" />
+                                    <dx:GridViewToolbarItem Command="ExportToCsv" />
+                                    <dx:GridViewToolbarItem Command="ExportToXls" Text="Export to XLS(DataAware)" />
+                                    <dx:GridViewToolbarItem Name="CustomExportToXLS" Text="Export to XLS(WYSIWYG)" Image-IconID="export_exporttoxls_16x16office2013" />
+                                    <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Export to XLSX(DataAware)" />
+                                    <dx:GridViewToolbarItem Name="CustomExportToXLSX" Text="Export to XLSX(WYSIWYG)" Image-IconID="export_exporttoxlsx_16x16office2013" />
+                                </Items>
                             </dx:GridViewToolbarItem>
                         </Items>
                     </dx:GridViewToolbar>
                 </Toolbars>
             </dx:ASPxGridView>
         </div>
+
+
 
         <footer class="container-fluid text-center">
             <div class="row">

@@ -2,15 +2,14 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using DevExpress.Export;
 using DevExpress.Web;
-using DevExpress.Web.Internal.Dialogs;
+using DevExpress.XtraPrinting;
 
 
 namespace DemoSoftMigration.Pages
 {
-    public partial class WebForm : Page
+    public partial class WebForm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,10 +30,10 @@ namespace DemoSoftMigration.Pages
             switch (e.Item.Name)
             {
                 case "CustomExportToXLS":
-                    grid.ExportXlsToResponse(new DevExpress.XtraPrinting.XlsExportOptionsEx { ExportType = ExportType.WYSIWYG });
+                    grid.ExportXlsToResponse(new XlsExportOptionsEx { ExportType = ExportType.WYSIWYG });
                     break;
                 case "CustomExportToXLSX":
-                    grid.ExportXlsxToResponse(new DevExpress.XtraPrinting.XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
+                    grid.ExportXlsxToResponse(new XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
                     break;
                 default:
                     break;
