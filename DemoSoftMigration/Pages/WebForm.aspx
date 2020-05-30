@@ -39,12 +39,20 @@
                     <img src="../Resources/demosoftReformatedforWeb.png" />
                 </div>
                 <div class="collapse navbar-collapse" id="NavbarMenuBurger">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li ><a onclick="DatagridHelp();">Βοήθεια</a></li>
-                        <li><a onclick="CPTerms();">Όροι χρήσης</a></li>
-                        <li><a onclick="CPPolicy();">Πολιτική απορρήτου</a></li>
-                        <%-- <li><a onclick="CPC();">Επικοινωνία</a></li>--%>
-                    </ul>
+                    <div class="English">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a onclick="DatagridHelp();">Help</a></li>
+                            <li><a onclick="CPTerms();">Terms and conditions</a></li>
+                            <li><a onclick="CPPolicy();">Privacy policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="Greek">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a onclick="DatagridHelp();">Βοήθεια</a></li>
+                            <li><a onclick="CPTerms();">Όροι χρήσης</a></li>
+                            <li><a onclick="CPPolicy();">Πολιτική απορρήτου</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -166,15 +174,18 @@
             <div class="row">
 
                 <div class="col-sm-4">
-                    <h3>Επικοινωνία </h3>
+                    <h3 class="English">Contact </h3>
+                    <h3 class="Greek">Επικοινωνία </h3>
                     <br />
-                    <h4>NeutronSoft@info.com</h4>
+                    <h4>Demosoft@info.com</h4>
                     <h4>210-1223344</h4>
-                    <h4>Χαροκόπου 86, Καλλιθέα</h4>
+                    <h4 class="English">Charokopu 86, Kalithea</h4>
+                    <h4 class="Greek">Χαροκόπου 86, Καλλιθέα</h4>
                 </div>
 
                 <div class="col-sm-4">
-                    <h3>Μείνετε συνδεδεμένοι  </h3>
+                    <h3 class="English">Stay connected </h3>
+                    <h3 class="Greek">Μείνετε συνδεδεμένοι  </h3>
                     <br />
                     <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
                     <a href="https://www.youtube.com/" class="fa fa-youtube"></a>
@@ -182,10 +193,11 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <h3>Γλώσσες</h3>
+                    <h3 class="English">Languages</h3>
+                    <h3 class="Greek">Γλώσσες</h3>
                     <br />
-                    <h4 class="LangSelect" onclick="CLG();">Greek-Ελ</h4>
-                    <h4 class="LangSelect" onclick="CLE();">English-En</h4>
+                    <h4 class="LangSelect" onclick="ChangeLanguage();">Greek-Ελ</h4>
+                    <h4 class="LangSelect" onclick="ChangeLanguage();">English-En</h4>
                     <br />
                 </div>
                 <h4 id="Copyrights" />

@@ -150,6 +150,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Pages\DataActionPage.aspx" />
     <Content Include="Pages\favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +252,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GridUtils.cs" />
+    <Compile Include="Pages\DataActionPage.aspx.cs">
+      <DependentUpon>DataActionPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DataActionPage.aspx.designer.cs">
+      <DependentUpon>DataActionPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Privacy.aspx.cs">
       <DependentUpon>Privacy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

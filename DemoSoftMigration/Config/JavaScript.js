@@ -1,5 +1,8 @@
-﻿function CDT() {
+﻿var Language = "English";
+
+function CDT() {
     Copyright();
+    LoadLanguage(Language);
 }
 
 
@@ -17,11 +20,35 @@ function Copyright() {
     document.getElementById("Copyrights").id = Copyrights;
 }
 
-var Language = "English";
+//#region Language 
 function ChangeLanguage() {
     Language = Language == "English" ? "Greek" : "English";
+    LoadLanguage(Language);
 }
 
+
+function LoadLanguage(Language) {
+    var ElementsInEnglish = document.getElementsByClassName("English");
+    var ElementsInGreek = document.getElementsByClassName("Greek");
+
+    if (Language == "English") {
+        for (var i = 0; i < ElementsInEnglish.length; i++) {
+            document.getElementsByClassName('Greek')[i].style.display = 'none';
+        }
+        for (var i = 0; i < ElementsInGreek.length; i++) {
+            document.getElementsByClassName('English')[i].style.display = 'block';
+        }
+    }
+    else {
+        for (var i = 0; i < ElementsInEnglish.length; i++) {
+            document.getElementsByClassName('Greek')[i].style.display = 'block';
+        }
+        for (var i = 0; i < ElementsInGreek.length; i++) {
+            document.getElementsByClassName('English')[i].style.display = 'none';
+        }
+    }
+}
+//#EndRegion Language
 
 function DatagridHelp(Language) {
     alert();
