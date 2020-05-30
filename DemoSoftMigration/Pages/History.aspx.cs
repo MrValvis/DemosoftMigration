@@ -52,5 +52,10 @@ namespace DemoSoftMigration.Pages
             return DataSetVariable;
         }
         #endregion
+
+        protected void ASPxOkButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("WebForm.aspx");
+        }
     }
 }

@@ -40,15 +40,11 @@
                     <div class="English">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a onclick="DatagridHelp();">Help</a></li>
-                            <li><a onclick="CPTerms();">Terms and conditions</a></li>
-                            <li><a onclick="CPPolicy();">Privacy policy</a></li>
                         </ul>
                     </div>
                     <div class="Greek">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a onclick="DatagridHelp();">Βοήθεια</a></li>
-                            <li><a onclick="CPTerms();">Όροι χρήσης</a></li>
-                            <li><a onclick="CPPolicy();">Πολιτική απορρήτου</a></li>
                         </ul>
                     </div>
                 </div>
@@ -65,7 +61,7 @@
                 <SettingsSearchPanel Visible="True" />
             </dx:ASPxGridView>
         </div>
-
+        <dx:ASPxButton ID="ASPxOkButton" runat="server" Text="Ok" HorizontalAlign="Center" OnClick="ASPxOkButton_Click" Theme="MetropolisBlue" style="display: flex;justify-content: center;align-items: center;"/>
 
 
         <footer class="container-fluid text-center">
