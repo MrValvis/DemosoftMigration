@@ -67,6 +67,36 @@ namespace DemoSoftMigration.Pages
             return DataSetVariable;
         }
         #endregion
+
+        protected void AddButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ModifyButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void InspectButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void RemoveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void RefreshButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void HistoryButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

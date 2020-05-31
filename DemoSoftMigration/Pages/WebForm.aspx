@@ -57,77 +57,34 @@
             </div>
         </nav>
 
-        <%-- <div class="Content">
 
-            <div class="GridView">
-                <dx:ASPxGridView ID="ASPxGridViewData" runat="server" ClientInstanceName="ASPxGridViewData" EnableTheming="True" Theme="iOS" Cursor="auto" OnToolbarItemClick="Grid_ToolbarItemClick">
-
-                    <%-- toolbar --%>
-        <%--<SettingsSearchPanel CustomEditorID="tbToolbarSearch" />
-                    <SettingsBehavior AllowFocusedRow="true" />
-                    <%-- end of toolbar --%>
-        <%--<ClientSideEvents ToolbarItemClick="OnToolbarItemClick" />
-                    <SettingsPager AlwaysShowPager="True" NumericButtonCount="4">
-                        <PageSizeItemSettings Items="10, 20, 40, 100, 200" Visible="True">
-                        </PageSizeItemSettings>
-                    </SettingsPager>--%>
-
-        <%-- <Settings ShowHeaderFilterButton="True" />
-                    <SettingsBehavior AllowSelectByRowClick="True" AllowSelectSingleRowOnly="True" />
-                    <SettingsSearchPanel Visible="True" />
-
-                    <SettingsExport EnableClientSideExportAPI="true" ExcelExportMode="DataAware" />
-
-                    <Toolbars>
-                        <dx:GridViewToolbar>
-                            <SettingsAdaptivity Enabled="true" EnableCollapseRootItemsToIcons="true" />
-                            <Items>--%>
-        <%--<dx:GridViewToolbarItem Command="New" />
-                                    <dx:GridViewToolbarItem Command="Edit" />
-                                    <dx:GridViewToolbarItem Command="Delete" /> 
-                                    <dx:GridViewToolbarItem Command="Refresh" BeginGroup="true" AdaptivePriority="2" />
-        --%>
-
-        <%--   <dx:GridViewToolbarItem Command="New" Text="New" BeginGroup="true" AdaptivePriority="0" />
-                                <dx:GridViewToolbarItem Command="Edit" Text="Modify" BeginGroup="true" AdaptivePriority="1" />
-                                <dx:GridViewToolbarItem Command="Delete" Text="Delete" BeginGroup="true" AdaptivePriority="3" />
-                                <dx:GridViewToolbarItem Command="Refresh" BeginGroup="true" AdaptivePriority="4" />
-                                <dx:GridViewToolbarItem Command="PreviewChanges" Text="History" BeginGroup="true" AdaptivePriority="5" />
-
-                                <dx:GridViewToolbarItem Text="Export to" Image-IconID="actions_download_16x16office2013" BeginGroup="true" AdaptivePriority="1">
-                                    <Items>
-                                        <dx:GridViewToolbarItem Command="ExportToPdf" />
-                                        <dx:GridViewToolbarItem Command="ExportToDocx" />
-                                        <dx:GridViewToolbarItem Command="ExportToRtf" />
-                                        <dx:GridViewToolbarItem Command="ExportToCsv" />
-                                        <dx:GridViewToolbarItem Command="ExportToXls" Text="Export to XLS(DataAware)" />
-                                        <dx:GridViewToolbarItem Name="CustomExportToXLS" Text="Export to XLS(WYSIWYG)" Image-IconID="export_exporttoxls_16x16office2013">
-                                            <Image IconID="export_exporttoxls_16x16office2013"></Image>
-                                        </dx:GridViewToolbarItem>
-                                        <dx:GridViewToolbarItem Command="ExportToXlsx" Text="Export to XLSX(DataAware)" />
-                                        <dx:GridViewToolbarItem Name="CustomExportToXLSX" Text="Export to XLSX(WYSIWYG)" Image-IconID="export_exporttoxlsx_16x16office2013">
-                                            <Image IconID="export_exporttoxlsx_16x16office2013"></Image>
-                                        </dx:GridViewToolbarItem>
-                                    </Items>
-
-                                    <Image IconID="actions_download_16x16office2013"></Image>
-                                </dx:GridViewToolbarItem>
-                                <dx:GridViewToolbarItem Alignment="right">
-                                    <Template>
-                                        <dx:ASPxButtonEdit ID="tbToolbarSearch" runat="server" NullText="Search for..." Height="100%">
-                                            <Buttons>
-                                                <dx:SpinButtonExtended Image-IconID="find_find_16x16gray" />
-                                            </Buttons>
-                                        </dx:ASPxButtonEdit>
-                                    </Template>
-                                </dx:GridViewToolbarItem>
-                            </Items>
-                        </dx:GridViewToolbar>
-                    </Toolbars>
-
-                </dx:ASPxGridView>
-            </div>
-        </div>--%>
+        <div class="DatabaseActionsMenu">
+            <table class="DatabaseActionsTable">
+                <tr>
+                    <th>
+                        <dx:ASPxButton ID="AddButton" runat="server" Text="Add" Image-Url="~/Resources/add32x32.ico" />
+                    </th>
+                    <th>
+                        <dx:ASPxButton ID="ModifyButton" runat="server" Text="Modify" Image-Url="~/Resources/modify32x32.ico" />
+                    </th>
+                    <th>
+                        <dx:ASPxButton ID="InspectButton" runat="server" Text="Inspect" Image-Url="~/Resources/inspect32x32.ico" />
+                    </th>
+                    <th>
+                        <dx:ASPxButton ID="RemoveButton" runat="server" Text="Remove" Image-Url="~/Resources/Remove32x32.ico" />
+                    </th>
+                    <th>
+                        <dx:ASPxButton ID="RefreshButton" runat="server" Text="Refresh" Image-Url="~/Resources/refresh32x32.ico" />
+                    </th>
+                    <th>
+                        <dx:ASPxButton ID="HistoryButton" runat="server" Text="History" Image-Url="~/Resources/history32x32.ico" />
+                    </th>
+                    <th>
+                        <dx:ASPxDropDownEdit ID="ExportDropDown" runat="server" Text="Export" />
+                    </th>
+                </tr>
+            </table>
+        </div>
 
 
 
