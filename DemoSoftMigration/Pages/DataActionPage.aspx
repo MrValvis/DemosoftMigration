@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DataActionPage.aspx.cs" Inherits="DemoSoftMigration.Pages.DataActionPage" %>
 
+<%@ Register Assembly="DevExpress.Web.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.Web.ASPxScheduler.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxScheduler" TagPrefix="dxwschs" %>
 
 <!DOCTYPE html>
@@ -23,53 +25,6 @@
 
     <title>Demosoft</title>
 
-    <%--   <style>
-        .form-inline {
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
-        }
-
-            .form-inline input {
-                vertical-align: middle;
-                margin: 5px 10px 5px 0;
-                padding: 10px;
-                background-color: #fff;
-                border: 1px solid #ddd;
-            }
-
-            .form-inline button {
-                padding: 10px 20px;
-                background-color: dodgerblue;
-                border: 1px solid #ddd;
-                color: white;
-                cursor: pointer;
-            }
-
-                .form-inline button:hover {
-                    background-color: royalblue;
-                }
-
-        @media (max-width: 800px) {
-            .form-inline input {
-                margin: 10px 0;
-            }
-
-            .form-inline {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        .test {
-            display: inline-block;
-            vertical-align: top; /* Vertically align the inline-block elements */
-            height: 100%;
-            line-height: 100%;
-            width: 33.33%; /* Just for Demo */
-            outline: 1px dashed red
-        }
-    </style>--%>
 </head>
 <body onload="CDT();">
     <form id="form1" runat="server">
@@ -87,53 +42,27 @@
                 </div>
                 <div class="collapse navbar-collapse" id="NavbarMenuBurger">
                     <div class="English">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a onclick="DataHelp();">Help</a></li>
-                    </ul>
-                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a onclick="DataHelp();">Help</a></li>
+                        </ul>
+                    </div>
                     <div class="Greek">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a onclick="DataHelp();">Βοήθεια</a></li>
-                    </ul>
-                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a onclick="DataHelp();">Βοήθεια</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
 
-
-        <%--<div class="test" style="margin: auto;width: 50%;padding: 10px;">
-
-            <div class="form-inline">
-                <div class="column" style="display:inline-block;">
-                    <div style="width:100%;">
-                    <asp:Label ID="Label1" runat="server" Text="Label" />
-                    <asp:TextBox ID="TextBox1" runat="server" />
-                    <asp:Label ID="Label2" runat="server" Text="Label" />
-                    <asp:TextBox ID="TextBox2" runat="server" />
-                        </div>
-                    <br />
-                    <asp:Label ID="Label3" runat="server" Text="Label" />
-                    <asp:TextBox ID="TextBox3" runat="server" />
-                    <asp:Label ID="Label4" runat="server" Text="Label" />
-                    <asp:TextBox ID="TextBox4" runat="server" />
-                    <br />
-                    <asp:Label ID="Label5" runat="server" Text="Label" />
-                    <asp:TextBox ID="TextBox5" runat="server" />
-                    <asp:Label ID="Label6" runat="server" Text="Label" />
-                    <asp:TextBox ID="TextBox6" runat="server" />
-                    <br />
-                </div>
-            </div>
-        </div>--%>
-
         <asp:Panel ID="PanelEnglish" runat="server">
-            <table style="width: 100%">
+            <table style="width: 100%;">
                 <tr>
                     <th>
                         <asp:Label ID="OrderId" runat="server" Text="Order Id" />
                     </th>
                     <th>
-                        <asp:TextBox ID="OrderIdTextbox" runat="server" ReadOnly="True" />
+                        <asp:TextBox ID="OrderIdTextbox" runat="server" Text="Auto Incremental" ReadOnly="True" />
                     </th>
                 </tr>
                 <tr>
@@ -141,14 +70,17 @@
                         <asp:Label ID="CustomerId" runat="server" Text="Customer Id" />
                     </th>
                     <th>
-                        <asp:TextBox ID="CustomerIdTextbox" runat="server" /></th>
+                        <asp:TextBox ID="CustomerIdTextbox" runat="server" MaxLength="5" />
+                    </th>
+                        <asp:RegularExpressionValidator ID="CustomerIdTextboxValidator" runat="server" ErrorMessage="Only letters are allowed in Customer Id field" ForeColor="Red" ControlToValidate="CustomerIdTextbox" ValidationExpression="^[A-Za-z]*$" />
                 </tr>
                 <tr>
                     <th>
                         <asp:Label ID="EmployeeId" runat="server" Text="Employee Id" />
                     </th>
                     <th>
-                        <asp:TextBox ID="EmployeeIdTextbox" runat="server" ReadOnly="True" />
+                        <asp:TextBox ID="EmployeeIdTextbox" runat="server"  MaxLength="9" />
+                        <asp:RegularExpressionValidator ID="EmployeeIdValidator" runat="server" ControlToValidate="EmployeeIdTextbox" ErrorMessage="Only numeric values are allowed in Employee Id field" ForeColor="Red" ValidationExpression="^[0-9]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -180,7 +112,8 @@
                         <asp:Label ID="Shipvia" runat="server" Text="Ship via" />
                     </th>
                     <th>
-                        <asp:TextBox ID="ShipviaTextbox" runat="server" />
+                        <asp:TextBox ID="ShipviaTextbox" runat="server" MaxLength="9" />
+                        <asp:RegularExpressionValidator ID="ShipviaTextboxValidator" runat="server" ControlToValidate="ShipviaTextbox" ErrorMessage="Only numeric values are allowed in Ship Via field" ForeColor="Red" ValidationExpression="^[0-9]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -188,7 +121,8 @@
                         <asp:Label ID="Freight" runat="server" Text="Freight" />
                     </th>
                     <th>
-                        <asp:TextBox ID="FreightTextbox" runat="server" />
+                        <asp:TextBox ID="FreightTextbox" runat="server" MaxLength="10" />
+                        <asp:RegularExpressionValidator ID="FreightTextboxValidator" runat="server" ControlToValidate="ShipviaTextbox" ErrorMessage="Only decimal numbers values are allowed in freight field (examples 1,2.33,1953.29 etc.)" ForeColor="Red" ValidationExpression="^[0-9]+(\.[0-9]{1,2})?$" />
                     </th>
                 </tr>
                 <tr>
@@ -196,7 +130,8 @@
                         <asp:Label ID="ShipName" runat="server" Text="Ship Name" />
                     </th>
                     <th>
-                        <asp:TextBox ID="ShipNameTextbox" runat="server" />
+                        <asp:TextBox ID="ShipNameTextbox" runat="server" MaxLength="40" />
+                        <asp:RegularExpressionValidator ID="ShipNameTextboxValidator" runat="server" ControlToValidate="ShipNameTextbox" ErrorMessage="Only letters are allowed in Country field" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -204,7 +139,7 @@
                         <asp:Label ID="Shipaddress" runat="server" Text="Ship address" />
                     </th>
                     <th>
-                        <asp:TextBox ID="ShipAddressTextbox" runat="server" />
+                        <asp:TextBox ID="ShipAddressTextbox" runat="server" MaxLength="60" />
                     </th>
                 </tr>
                 <tr>
@@ -212,7 +147,8 @@
                         <asp:Label ID="ShipCity" runat="server" Text="Ship City" />
                     </th>
                     <th>
-                        <asp:TextBox ID="ShipCityTextbox" runat="server" />
+                        <asp:TextBox ID="ShipCityTextbox" runat="server" MaxLength="15" />
+                        <asp:RegularExpressionValidator ID="ShipCityTextboxValidator" runat="server" ControlToValidate="ShipCityTextbox" ErrorMessage="Only letters are allowed in Ship city field" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -220,7 +156,8 @@
                         <asp:Label ID="ShipRegion" runat="server" Text="Ship Region" />
                     </th>
                     <th>
-                        <asp:TextBox ID="ShipRegionTextbox" runat="server" />
+                        <asp:TextBox ID="ShipRegionTextbox" runat="server" MaxLength="15" />
+                        <asp:RegularExpressionValidator ID="ShipRegionTextboxValidator" runat="server" ControlToValidate="ShipRegionTextbox" ErrorMessage="Only letters are allowed in Ship region field" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -228,7 +165,8 @@
                         <asp:Label ID="ShipPostal" runat="server" Text="Ship Postal" />
                     </th>
                     <th>
-                        <asp:TextBox ID="ShipPostalTextbox" runat="server" />
+                        <asp:TextBox ID="ShipPostalTextbox" runat="server" MaxLength="9" />
+                        <asp:RegularExpressionValidator ID="ShipPostalTextboxValidator" runat="server" ControlToValidate="ShipPostalTextbox" ErrorMessage="Only numeric values are allowed in Ship Postal field" ForeColor="Red" ValidationExpression="^[0-9]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -236,7 +174,13 @@
                         <asp:Label ID="ShipCountry" runat="server" Text="Ship Country" />
                     </th>
                     <th>
-                        <asp:TextBox ID="ShipCountryTextbox" runat="server" />
+                        <asp:TextBox ID="ShipCountryTextbox" runat="server" MaxLength="15" />
+                        <asp:RegularExpressionValidator ID="ShipCountryTextboxnValidator" runat="server" ControlToValidate="ShipCountryTextbox" ErrorMessage="Only letters are allowed in Country field" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" />
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <dx:ASPxButton ID="OkButton" runat="server" Text="Ok" Style="width: 100%" OnClick="OkButton_Click" />
                     </th>
                 </tr>
             </table>

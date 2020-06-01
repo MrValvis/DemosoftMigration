@@ -67,6 +67,15 @@ namespace DemoSoftMigration.Pages {
         protected global::System.Web.UI.WebControls.TextBox CustomerIdTextbox;
         
         /// <summary>
+        /// CustomerIdTextboxValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator CustomerIdTextboxValidator;
+        
+        /// <summary>
         /// EmployeeId control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace DemoSoftMigration.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox EmployeeIdTextbox;
+        
+        /// <summary>
+        /// EmployeeIdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmployeeIdValidator;
         
         /// <summary>
         /// OrderDate control.
@@ -157,6 +175,15 @@ namespace DemoSoftMigration.Pages {
         protected global::System.Web.UI.WebControls.TextBox ShipviaTextbox;
         
         /// <summary>
+        /// ShipviaTextboxValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ShipviaTextboxValidator;
+        
+        /// <summary>
         /// Freight control.
         /// </summary>
         /// <remarks>
@@ -175,6 +202,15 @@ namespace DemoSoftMigration.Pages {
         protected global::System.Web.UI.WebControls.TextBox FreightTextbox;
         
         /// <summary>
+        /// FreightTextboxValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator FreightTextboxValidator;
+        
+        /// <summary>
         /// ShipName control.
         /// </summary>
         /// <remarks>
@@ -191,6 +227,15 @@ namespace DemoSoftMigration.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ShipNameTextbox;
+        
+        /// <summary>
+        /// ShipNameTextboxValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ShipNameTextboxValidator;
         
         /// <summary>
         /// Shipaddress control.
@@ -229,6 +274,15 @@ namespace DemoSoftMigration.Pages {
         protected global::System.Web.UI.WebControls.TextBox ShipCityTextbox;
         
         /// <summary>
+        /// ShipCityTextboxValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ShipCityTextboxValidator;
+        
+        /// <summary>
         /// ShipRegion control.
         /// </summary>
         /// <remarks>
@@ -245,6 +299,15 @@ namespace DemoSoftMigration.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ShipRegionTextbox;
+        
+        /// <summary>
+        /// ShipRegionTextboxValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ShipRegionTextboxValidator;
         
         /// <summary>
         /// ShipPostal control.
@@ -265,6 +328,15 @@ namespace DemoSoftMigration.Pages {
         protected global::System.Web.UI.WebControls.TextBox ShipPostalTextbox;
         
         /// <summary>
+        /// ShipPostalTextboxValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ShipPostalTextboxValidator;
+        
+        /// <summary>
         /// ShipCountry control.
         /// </summary>
         /// <remarks>
@@ -281,5 +353,23 @@ namespace DemoSoftMigration.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ShipCountryTextbox;
+        
+        /// <summary>
+        /// ShipCountryTextboxnValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ShipCountryTextboxnValidator;
+        
+        /// <summary>
+        /// OkButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton OkButton;
     }
 }
