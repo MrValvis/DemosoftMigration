@@ -11,10 +11,10 @@ namespace DemoSoftMigration.Pages
 {
     public partial class History : System.Web.UI.Page
     {
-        long OrderID= 10248;
-
+        long OrderID;
         protected void Page_Load(object sender, EventArgs e)
         {
+            OrderID = Convert.ToInt64(Session["OrderID"]);
             //This line is used in item menu
             GridViewFeaturesHelper.SetupGlobalGridViewBehavior(ASPxGridViewData);
 
@@ -55,7 +55,7 @@ namespace DemoSoftMigration.Pages
 
         protected void ASPxOkButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("WebForm.aspx");
+            Server.Transfer("WebForm.aspx");
         }
     }
 }

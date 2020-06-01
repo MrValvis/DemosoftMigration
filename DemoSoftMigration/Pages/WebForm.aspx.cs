@@ -14,7 +14,7 @@ namespace DemoSoftMigration.Pages
         SqlCommand Command;
         string SQLMessageResult;
         string SQLHeaderResult;
-        string Language="English";
+        string Language = "English";
 
         //string Language = LanguageHiddenField.Value;
 
@@ -50,33 +50,32 @@ namespace DemoSoftMigration.Pages
 
         protected void AddButton_Click(object sender, EventArgs e)
         {
-            
+            DatabaseActions(SelectedAction: "Add", Language);
         }
 
         protected void ModifyButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Modify",Language);
+            DatabaseActions(SelectedAction: "Modify", Language);
         }
 
         protected void InspectButton_Click(object sender, EventArgs e)
         {
-            //DatabaseActions(type: "Inspect");
+            DatabaseActions(SelectedAction: "Inspect", Language);
         }
 
         protected void RemoveButton_Click(object sender, EventArgs e)
         {
-            GetSelectedRowData();
-            //DatabaseActions(type: "Delete");
+            DatabaseActions(SelectedAction: "Remove", Language);
         }
 
         protected void RefreshButton_Click(object sender, EventArgs e)
         {
-            GetSelectedRowData();
+            DatabaseActions(SelectedAction: "Refresh", Language);
         }
 
         protected void HistoryButton_Click(object sender, EventArgs e)
         {
-            Server.Transfer("DataActionPage.aspx");
+            DatabaseActions(SelectedAction: "History", Language);
         }
 
         protected void ExportDropDown_TextChanged(object sender, EventArgs e)
@@ -161,59 +160,9 @@ namespace DemoSoftMigration.Pages
         }
 
         #region Get selected row data
-        private void GetSelectedRowData()
+        private string GetSelectedRowOrderID()
         {
             var OrderID = ASPxGridViewData.GetSelectedFieldValues("OrderID");
-            var CustomerID = ASPxGridViewData.GetSelectedFieldValues("CustomerID");
-            var EmployeeID = ASPxGridViewData.GetSelectedFieldValues("EmployeeID");
-            var OrderDate = ASPxGridViewData.GetSelectedFieldValues("OrderDate");
-            var RequiredDate = ASPxGridViewData.GetSelectedFieldValues("RequiredDate");
-            var ShippedDate = ASPxGridViewData.GetSelectedFieldValues("ShippedDate");
-            var ShipVia = ASPxGridViewData.GetSelectedFieldValues("ShipVia");
-            var Freight = ASPxGridViewData.GetSelectedFieldValues("Freight");
-            var ShipName = ASPxGridViewData.GetSelectedFieldValues("ShipName");
-            var ShipAddress = ASPxGridViewData.GetSelectedFieldValues("ShipAddress");
-            var ShipCity = ASPxGridViewData.GetSelectedFieldValues("ShipCity");
-            var ShipRegion = ASPxGridViewData.GetSelectedFieldValues("ShipRegion");
-            var ShipPostalCode = ASPxGridViewData.GetSelectedFieldValues("ShipPostalCode");
-            var ShipCountry = ASPxGridViewData.GetSelectedFieldValues("ShipCountry");
-
-            try {
-                if (OrderID[0].ToString() == "") {
-                    // it will create out of bound exception if there is no selected row, it will be modified in patch
-                }
-            ClientScript.RegisterStartupScript(GetType(), "testalert", "alert('" + 
-                OrderID[0].ToString()+
-                CustomerID[0].ToString() +
-                EmployeeID[0].ToString()+
-                OrderDate[0].ToString()+
-                RequiredDate[0].ToString() +
-                ShippedDate[0].ToString() +
-                ShipVia[0].ToString() +
-                Freight[0].ToString() +
-                ShipName[0].ToString() +
-                ShipAddress[0].ToString() +
-                ShipCity[0].ToString() +
-                ShipRegion[0].ToString() +
-                ShipPostalCode[0].ToString() +
-                ShipCountry[0].ToString()+
-                "');", true);
-            }
-            catch(Exception Error)
-            {
-                // if user has not selected any entry instead of error he will encounter a messagebox informing him
-                if (Language == "English") {
-                    ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Δεν βρέθηκε επιλεγμένη εγγραφή!", "alert('Δεν έχετε επιλέξει κάποια εγγραφή!');", true);
-                }
-            }
-        }
-
-        private string GetSelectedRowOrderID(){
-            var OrderID= ASPxGridViewData.GetSelectedFieldValues("OrderID");
             try
             {
                 if (OrderID[0].ToString() == "")
@@ -237,33 +186,174 @@ namespace DemoSoftMigration.Pages
         }
         #endregion
 
-        #region
-        private  void DatabaseActions(string SelectedAction,string Language)
+        #region Database actions
+        private void DatabaseActions(string SelectedAction, string Language)
         {
-            switch(SelectedAction){
-                case "Add": {
-                        Server.Transfer("DataActionPage.aspx?SelectedAction=" + "Add");
-                        break; }
-                case "Modify": {
-                        Server.Transfer("DataActionPage.aspx?SelectedAction=" + "Modify"); // add all the other variables
-                        break; }
-                case "Inspect": {
-                        Server.Transfer("DataActionPage.aspx?SelectedAction=" + "Inspect"); // add all the other variables ALSO Readonly textfields
-                        break; }
-                case "Delete": {
-                        GetSelectedRowOrderID();
-                        //RemoveElement(Language,OrderID);
-                        break; }
-                case "Reload": {
-                        break; }
-                case "Histroy": {
+            switch (SelectedAction)
+            {
+                case "Add":
+                    {
+                        Session["Type"] = "Add";
+                        Server.Transfer("DataActionPage.aspx");
+                        break;
+                    }
+                case "Modify":
+                    {
+                        PassVariableToPage("Modify");
+                        break;
+                    }
+                case "Inspect":
+                    {
+                        PassVariableToPage("Inspect");
+                        break;
+                    }
+                case "Remove":
+                    {
+                        long OrderIdvar = GetOrderId();
+                        if (OrderIdvar == -1)
+                        {
+                            NoEntrySelected();
+                        }
+                        else
+                        {
+                            RemoveElement(Language, OrderIdvar);
+                        }
 
-                        break; }
+                        break;
+                    }
+                case "Reload":
+                    {
+                        FillTableInfo();
+                        break;
+                    }
+                case "History":
+                    {
+                        long OrderIdvar = GetOrderId();
+                        if (OrderIdvar == -1)
+                        {
+                            NoEntrySelected();
+                        }
+                        else
+                        {
+                            OrderIdvar = GetOrderId();
+                            if (OrderIdvar == -1)
+                            {
+                                NoEntrySelected();
+                            }
+                            else
+                            {
+                                Session["OrderID"] = OrderIdvar.ToString();
+                                Server.Transfer("History.aspx");
+                            }
+                        }
+                        break;
+                    }
+                case "Export":
+                    { break; }
             }
-
         }
-
         #endregion
+
+        #region Passing variables to child page
+        private void PassVariableToPage(string SelectedType)
+        {
+            var OrderID = ASPxGridViewData.GetSelectedFieldValues("OrderID");
+            var CustomerID = ASPxGridViewData.GetSelectedFieldValues("CustomerID");
+            var EmployeeID = ASPxGridViewData.GetSelectedFieldValues("EmployeeID");
+            var OrderDate = ASPxGridViewData.GetSelectedFieldValues("OrderDate");
+            var RequiredDate = ASPxGridViewData.GetSelectedFieldValues("RequiredDate");
+            var ShippedDate = ASPxGridViewData.GetSelectedFieldValues("ShippedDate");
+            var ShipVia = ASPxGridViewData.GetSelectedFieldValues("ShipVia");
+            var Freight = ASPxGridViewData.GetSelectedFieldValues("Freight");
+            var ShipName = ASPxGridViewData.GetSelectedFieldValues("ShipName");
+            var ShipAddress = ASPxGridViewData.GetSelectedFieldValues("ShipAddress");
+            var ShipCity = ASPxGridViewData.GetSelectedFieldValues("ShipCity");
+            var ShipRegion = ASPxGridViewData.GetSelectedFieldValues("ShipRegion");
+            var ShipPostalCode = ASPxGridViewData.GetSelectedFieldValues("ShipPostalCode");
+            var ShipCountry = ASPxGridViewData.GetSelectedFieldValues("ShipCountry");
+
+
+            try
+            {
+                if (OrderID[0].ToString() == "")
+                {
+                    // it will create out of bound exception if there is no selected row, it will be modified in patch
+                }
+
+                if (SelectedType == "Modify")
+                {
+                    Session["Type"] = "Modify";
+                }
+                else
+                {
+                    Session["Type"] = "Inspect";
+                }
+                Session["OrderID"] = OrderID[0].ToString();
+                Session["CustomerID"] = CustomerID[0].ToString();
+                Session["EmployeeID"] = EmployeeID[0].ToString();
+                Session["OrderDate"] = OrderDate[0].ToString();
+                Session["RequiredDate"] = RequiredDate[0].ToString();
+                Session["ShippedDate"] = ShippedDate[0].ToString();
+                Session["ShipVia"] = ShipVia[0].ToString();
+                Session["Freight"] = Freight[0].ToString();
+                Session["ShipName"] = ShipName[0].ToString();
+                Session["ShipAddress"] = ShipAddress[0].ToString();
+                Session["ShipCity"] = ShipCity[0].ToString();
+                Session["ShipRegion"] = ShipRegion[0].ToString();
+                Session["ShipPostalCode"] = ShipPostalCode[0].ToString();
+                Session["ShipCountry"] = ShipCountry[0].ToString();
+                Server.Transfer("DataActionPage.aspx");
+            }
+            catch (Exception Error)
+            {
+                // if user has not selected any entry instead of error he will encounter a messagebox informing him
+                if (Language == "English")
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Δεν βρέθηκε επιλεγμένη εγγραφή!", "alert('Δεν έχετε επιλέξει κάποια εγγραφή!');", true);
+                }
+            }
+        }
+        #endregion
+
+        #region Get OrderID
+        private long GetOrderId()
+        {
+            long OrderId = -1;
+            var OrderID = ASPxGridViewData.GetSelectedFieldValues("OrderID");
+            try
+            {
+                if (OrderID[0].ToString() == "")
+                {
+                    // it will create out of bound exception if there is no selected row, it will be modified in patch
+                }
+                OrderId = Convert.ToInt64(OrderID[0]);
+            }
+            catch (Exception Error)
+            {
+                NoEntrySelected();
+            }
+            return OrderId;
+        }
+        #endregion
+
+        #region No entry selected messange
+        private void NoEntrySelected()
+        {
+            if (Language == "English")
+            {
+                ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Δεν βρέθηκε επιλεγμένη εγγραφή!", "alert('Δεν έχετε επιλέξει κάποια εγγραφή!');", true);
+            }
+        }
+        #endregion
+
 
         #region SQL Commands
 
@@ -279,6 +369,7 @@ namespace DemoSoftMigration.Pages
             return Convertion;
         }
         #endregion
+        #region Queries
 
         public DataSet FillTableInfo()
         {
@@ -289,7 +380,7 @@ namespace DemoSoftMigration.Pages
             DataAdapter.Fill(DataSetVariable);
             return DataSetVariable;
         }
-        #region Queries
+
         #region Add new entry
         public void AddNewElement(string Language, string CustomerID, long EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate, int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, long ShipPostalCode, string ShipCountry)
         {
@@ -469,12 +560,12 @@ namespace DemoSoftMigration.Pages
                 {
                     ConnectionString.Close();
                 }
-                ClientScript.RegisterStartupScript(GetType(), SQLHeaderResult, "alert('"+ SQLMessageResult + "');", true);
+                ClientScript.RegisterStartupScript(GetType(), SQLHeaderResult, "alert('" + SQLMessageResult + "');", true);
             }
         }
         #endregion
     }
     #endregion
 
-    
+
 }

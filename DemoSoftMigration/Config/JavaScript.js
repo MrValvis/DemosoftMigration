@@ -3,13 +3,14 @@
 function CDT() {
     Copyright();
     LoadLanguage(Language);
+    alert("testing");
 }
 
 
 function Copyright() {
     var VersionNo = "1.0";
     var Copyrights;
-    var CurrentYear = new Date().getFullYear()
+    var CurrentYear = new Date().getFullYear();
 
     if (CurrentYear <= 2019) {
         Copyrights = `Copyrights © 2020 DemoSoft.Ltd Version ${VersionNo}`;
@@ -22,7 +23,7 @@ function Copyright() {
 
 //#region Language 
 function ChangeLanguage() {
-    Language = Language == "English" ? "Greek" : "English";
+    Language = Language === "English" ? "Greek" : "English";
     LoadLanguage(Language);
 }
 
@@ -30,23 +31,24 @@ function ChangeLanguage() {
 function LoadLanguage(Language) {
     var ElementsInEnglish = document.getElementsByClassName("English");
     var ElementsInGreek = document.getElementsByClassName("Greek");
+    var i=0;
 
-    if (Language == "English") {
+    if (Language === "English") {
 
-        for (var i = 0; i < ElementsInEnglish.length; i++) {
+        for (i = 0; i < ElementsInEnglish.length; i++) {
             document.getElementsByClassName('Greek')[i].style.display = 'none';
         }
-        for (var i = 0; i < ElementsInGreek.length; i++) {
+        for (i = 0; i < ElementsInGreek.length; i++) {
             document.getElementsByClassName('English')[i].style.display = 'block';
         }
         document.getElementById('ASPxHiddenFieldLanugage').value = "English";
     }
     else {
 
-        for (var i = 0; i < ElementsInEnglish.length; i++) {
+        for (i = 0; i < ElementsInEnglish.length; i++) {
             document.getElementsByClassName('Greek')[i].style.display = 'block';
         }
-        for (var i = 0; i < ElementsInGreek.length; i++) {
+        for (i = 0; i < ElementsInGreek.length; i++) {
             document.getElementsByClassName('English')[i].style.display = 'none';
         }
         document.getElementById('ASPxHiddenFieldLanugage').value = "Greek";
@@ -54,8 +56,24 @@ function LoadLanguage(Language) {
 }
 //#EndRegion Language
 
+function CPH() {
+    window.location.href = "WebForm.aspx";
+}
+
+function CPTerms() {
+    window.location.href = "Terms.aspx";
+}
+
+function CPPolicy() {
+    window.location.href = "Privacy.aspx";
+}
+
+function test() {
+    alert("working");
+}
+
 function DatagridHelp(Language) {
-    if (Language == "English") {
+    if (Language === "English") {
         alert("Εικονίδια κοινωνικών δικτύων : \n" +
             "1)facebook\n" +
             "2)Linkedin\n" +
@@ -114,20 +132,11 @@ function DatagridHelp(Language) {
     }
 }
 
-
-function CPH() {
-    window.location.href = "WebForm.aspx";
-}
-
-function CPTerms() {
-    window.location.href = "Terms.aspx";
-}
-
-function CPPolicy() {
-    window.location.href = "Privacy.aspx";
-}
-
-
-function test() {
-    alert("working");
+function DataHelp(Language){
+    if (Language === "English") {
+        alert("English text help");
+    }
+    else {
+        alert("Βοηθητικό κείμενο στα ελληνικά");
+    }
 }

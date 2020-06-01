@@ -27,7 +27,6 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#NavbarMenuBurger">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -52,7 +51,6 @@
         </nav>
 
         <div class="DataGridDiv" style="width: 100%; word-wrap: break-word; table-layout: fixed; font-size: smaller; overflow-x: scroll; overflow-y: hidden;">
-
             <dx:ASPxGridView ID="ASPxGridViewData" runat="server" EnableTheming="True" Theme="iOS" Cursor="auto" KeyFieldName="OrderID">
 
                 <Settings ShowHeaderFilterButton="True" HorizontalScrollBarMode="Auto" />
@@ -62,7 +60,6 @@
             </dx:ASPxGridView>
         </div>
         <dx:ASPxButton ID="ASPxOkButton" runat="server" Text="Ok" HorizontalAlign="Center" OnClick="ASPxOkButton_Click" Theme="MetropolisBlue" style="display: flex;justify-content: center;align-items: center;"/>
-
 
         <footer class="container-fluid text-center">
             <div class="row">
