@@ -11,9 +11,7 @@ namespace DemoSoftMigration.Pages
         string SQLHeaderResult;
         private SqlCommand Command;
         private SqlConnection ConnectionString;
-       
-
-
+        string Language = "English";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,9 +25,9 @@ namespace DemoSoftMigration.Pages
             var OrderID = "";
             var CustomerID = "";
             var EmployeeID = "";
-            var OrderDate = "";
-            var RequiredDate = "";
-            var ShippedDate = "";
+            var OrderDate = DateTime.Now;
+            var RequiredDate = DateTime.Now;
+            var ShippedDate = DateTime.Now;
             var ShipVia = "";
             var Freight = "";
             var ShipName = "";
@@ -42,27 +40,12 @@ namespace DemoSoftMigration.Pages
 
             if ((SelectedType == "Modify") || (SelectedType == "Inspect"))
             {
-                //OrderID = Convert.ToInt64(Session["OrderID"]);
-                //CustomerID = Session["CustomerID"].ToString();
-                //EmployeeID = Convert.ToInt64(Session["CustomerID"]);
-                //OrderDate = Convert.ToDateTime(Session["OrderDate"]);
-                //RequiredDate = Convert.ToDateTime(Session["RequiredDate"]);
-                //ShippedDate = Convert.ToDateTime(Session["ShippedDate"]);
-                //ShipVia = Convert.ToUInt32(Session["ShipVia"]);
-                //Freight = Convert.ToDecimal(Session["Freight"]);
-                //ShipName = Session["ShipName"].ToString();
-                //ShipAddress = Session["ShipAddress"].ToString();
-                //ShipCity = Session["ShipCity"].ToString();
-                //ShipRegion = Session["ShipRegion"].ToString();
-                //ShipPostalCode = Convert.ToInt32(Session["ShipPostalCode"]);
-                //ShipCountry = Session["ShipCountry"].ToString();
-
                 OrderID = Session["OrderID"].ToString();
                 CustomerID = Session["CustomerID"].ToString();
                 EmployeeID = Session["CustomerID"].ToString();
-                OrderDate = Session["OrderDate"].ToString();
-                RequiredDate = Session["RequiredDate"].ToString();
-                ShippedDate = Session["ShippedDate"].ToString();
+                OrderDate = Convert.ToDateTime(Session["OrderDate"]);
+                RequiredDate = Convert.ToDateTime(Session["RequiredDate"].ToString());
+                ShippedDate = Convert.ToDateTime(Session["ShippedDate"].ToString());
                 ShipVia = Session["ShipVia"].ToString();
                 Freight = Session["Freight"].ToString();
                 ShipName = Session["ShipName"].ToString();
@@ -78,9 +61,9 @@ namespace DemoSoftMigration.Pages
                     OrderIdTextbox.ReadOnly = true;
                     CustomerIdTextbox.Text = CustomerID.ToString();
                     EmployeeIdTextbox.Text = EmployeeID.ToString();
-                    OrderDateTextbox.Text = OrderDate.ToString();
-                    RequiredDateTextbox.Text = RequiredDate.ToString();
-                    ShippedDateTextbox.Text = ShippedDate.ToString();
+                    OrderDateTextbox.Text = OrderDate.ToString("yyyy-MM-dd");
+                    RequiredDateTextbox.Text = RequiredDate.ToString("yyyy-MM-dd");
+                    ShippedDateTextbox.Text = ShippedDate.ToString("yyyy-MM-dd");
                     ShipviaTextbox.Text = ShipVia.ToString();
                     FreightTextbox.Text = Freight.ToString();
                     ShipNameTextbox.Text = ShipName.ToString();
@@ -98,11 +81,11 @@ namespace DemoSoftMigration.Pages
                     CustomerIdTextbox.ReadOnly = true;
                     EmployeeIdTextbox.Text = EmployeeID.ToString();
                     EmployeeIdTextbox.ReadOnly = true;
-                    OrderDateTextbox.Text = OrderDate.ToString();
+                    OrderDateTextbox.Text = OrderDate.ToString("yyyy-MM-dd");
                     OrderDateTextbox.ReadOnly = true;
-                    RequiredDateTextbox.Text = RequiredDate.ToString();
+                    RequiredDateTextbox.Text = RequiredDate.ToString("yyyy-MM-dd");
                     RequiredDateTextbox.ReadOnly = true;
-                    ShippedDateTextbox.Text = ShippedDate.ToString();
+                    ShippedDateTextbox.Text = ShippedDate.ToString("yyyy-MM-dd");
                     ShippedDateTextbox.ReadOnly = true;
                     ShipviaTextbox.Text = ShipVia.ToString();
                     ShipviaTextbox.ReadOnly = true;
@@ -128,23 +111,78 @@ namespace DemoSoftMigration.Pages
 
         protected void OkButton_Click(object sender, EventArgs e)
         {
-            //switch (SelectedType)
-            //{
-            //    case "Add": {
+            #region Converting textbox data to fit for the database
+            long OrderId = Convert.ToInt64(OrderIdTextbox.Text);
+            string CustomerId = CustomerIdTextbox.Text;
+            long EmployId = Convert.ToInt64(EmployeeIdTextbox.Text);
+            DateTime OrdareDate = Convert.ToDateTime(OrderDateTextbox.Text);
+            DateTime RequiredDate = Convert.ToDateTime(RequiredDateTextbox.Text);
+            DateTime ShippedDate = Convert.ToDateTime(ShippedDateTextbox.Text);
+            int ShipVia = Convert.ToInt32(ShipviaTextbox.Text);
+            decimal Freight = Convert.ToDecimal(FreightTextbox.Text);
+            string ShipName = ShipNameTextbox.Text;
+            string ShipAddress = ShipAddressTextbox.Text;
+            string ShipCity = ShipCityTextbox.Text;
+            string ShipRegion = ShipRegionTextbox.Text;
+            long ShipPostalCode = Convert.ToInt64(ShipRegionTextbox.Text);
+            string ShipCountry = ShipCountryTextbox.Text;
+            #endregion
 
-            //            break; }
-            //    case "Modify": {
-            //            break; }
-            //    case "Inspect": {
-            //            Response.Redirect("MainForm.aspx");
-            //            break; }
-            //}
-
-            if (Page.IsValid) { 
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('IsValid');", true);
+            switch (SelectedType)
+            {
+                case "Add":
+                    {
+                        try
+                        {
+                            AddNewElement(Language, CustomerId, EmployId, OrdareDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry);
+                            Response.Redirect("WebForm.aspx");
+                        }
+                        catch (Exception Error)
+                        {
+                            ErrorMessage();
+                        }
+                        break;
+                    }
+                case "Modify":
+                    {
+                        try
+                        {
+                            ModifyElement(Language, OrderId, CustomerId, EmployId, OrdareDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry);
+                            Response.Redirect("WebForm.aspx");
+                        }
+                        catch (Exception Error)
+                        {
+                            ErrorMessage();
+                        }
+                        break;
+                    }
+                case "Inspect":
+                    {
+                        Response.Redirect("WebForm.aspx");
+                        break;
+                    }
             }
-            else { ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Is NOT Valid');", true); }
+
+
+            //if (Page.IsValid) { 
+            //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('IsValid');", true);
+            //}
+            //else { ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Is NOT Valid');", true); }
         }
+
+        #region No entry selected messange
+        private void ErrorMessage()
+        {
+            if (Language == "English")
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Problem writing data in database", "alert('Ooops something went wrong on writing data to database!!');", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Πρόβλημα κατά την εγγραφή δεδομένων στην βάση δεδομένων", "alert('Οοουπς κάτι δεν πήγε καλά κατά την εγγραφή των δεδομένων στην βάση δεδομένων!');", true);
+            }
+        }
+        #endregion
 
         #region SQL Commands
         #region Create of datasource strings

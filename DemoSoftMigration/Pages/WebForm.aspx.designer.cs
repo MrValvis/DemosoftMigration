@@ -76,13 +76,13 @@ namespace DemoSoftMigration.Pages {
         protected global::DevExpress.Web.ASPxButton HistoryButton;
         
         /// <summary>
-        /// ExportDropDown control.
+        /// ExportCombobox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxDropDownEdit ExportDropDown;
+        protected global::DevExpress.Web.ASPxComboBox ExportCombobox;
         
         /// <summary>
         /// ASPxGridViewData control.
@@ -92,6 +92,15 @@ namespace DemoSoftMigration.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView ASPxGridViewData;
+        
+        /// <summary>
+        /// ASPxGridViewExporterData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridViewExporter ASPxGridViewExporterData;
         
         /// <summary>
         /// LanguageHiddenField control.

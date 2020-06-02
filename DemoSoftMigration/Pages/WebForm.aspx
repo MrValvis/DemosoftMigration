@@ -81,7 +81,17 @@
                         <dx:ASPxButton ID="HistoryButton" runat="server" Text="History" Image-Url="~/Resources/history32x32.ico" OnClick="HistoryButton_Click" />
                     </th>
                     <th>
-                        <dx:ASPxDropDownEdit ID="ExportDropDown" runat="server" Text="Export" OnTextChanged="ExportDropDown_TextChanged" />
+                        <dx:ASPxComboBox ID="ExportCombobox" runat="server" Width="285px" ImageUrlField="ImageUrl" TextField="Export To" ValueField="Name" ShowImageInEditBox="True" EnableTheming="True" ReadOnly="false" Theme="iOS"  AutoPostBack="True" OnSelectedIndexChanged="ExportCombobox_SelectedIndexChanged" Caption="Export To">
+                            <Items>
+                                <dx:ListEditItem Text="PDF" Value="0" ImageUrl="../Resources/PDFexport.ico" />
+                                <dx:ListEditItem Text="XLS (Data Aware)" Value="1" ImageUrl="../Resources/XLSExport.ico" />
+                                <dx:ListEditItem Text="XLSX (Data Aware)" Value="3" ImageUrl="../Resources/XLSXExport.ico" />
+                                <dx:ListEditItem Text="RTF" Value="4" ImageUrl="../Resources/RTFExport.ico" />
+                                <dx:ListEditItem Text="CSV" Value="5" ImageUrl="../Resources/CVSExport.ico" />
+                                <dx:ListEditItem Text="DOCX" Value="6" ImageUrl="../Resources/DOCXExport.ico" />
+                            </Items>
+                            <ItemImage Height="24px" Width="23px" />
+                        </dx:ASPxComboBox>
                     </th>
                 </tr>
             </table>
@@ -91,7 +101,7 @@
 
         <div class="DataGridDiv" style="width: 100%; word-wrap: break-word; table-layout: fixed; font-size: smaller; overflow-x: scroll; overflow-y: hidden;">
 
-            <dx:ASPxGridView ID="ASPxGridViewData" runat="server" ClientInstanceName="ASPxGridViewData" EnableTheming="True" Theme="iOS" Cursor="auto" KeyFieldName="OrderID" >
+            <dx:ASPxGridView ID="ASPxGridViewData" runat="server" ClientInstanceName="ASPxGridViewData" EnableTheming="True" Theme="iOS" Cursor="auto" KeyFieldName="OrderID" GridViewID="ASPxGridViewData">
                 <SettingsPager AlwaysShowPager="True" NumericButtonCount="4">
                     <PageSizeItemSettings Items="10, 20, 40, 100, 200" Visible="True">
                     </PageSizeItemSettings>
@@ -100,6 +110,7 @@
                 <SettingsBehavior AllowSelectByRowClick="True" />
                 <SettingsSearchPanel Visible="True" />
             </dx:ASPxGridView>
+                        <dx:ASPxGridViewExporter ID="ASPxGridViewExporterData" runat="server"></dx:ASPxGridViewExporter>
         </div>
 
         <footer class="container-fluid text-center">
@@ -128,7 +139,7 @@
                     <h3 class="English">Languages</h3>
                     <h3 class="Greek">Γλώσσες</h3>
                     <br />
-                    <h4 class="LangSelect" onclick="ChangeLanguage();" >Greek-Ελ</h4>
+                    <h4 class="LangSelect" onclick="ChangeLanguage();">Greek-Ελ</h4>
                     <h4 class="LangSelect" onclick="ChangeLanguage();">English-En</h4>
                     <br />
                 </div>
@@ -136,7 +147,7 @@
             </div>
         </footer>
 
-        <asp:HiddenField ID="LanguageHiddenField" runat="server" value="Greek" />
+        <asp:HiddenField ID="LanguageHiddenField" runat="server" Value="Greek" />
     </form>
 </body>
 </html>

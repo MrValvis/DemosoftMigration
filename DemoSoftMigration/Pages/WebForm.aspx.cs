@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Windows.Forms;
 using DevExpress.Export;
 using DevExpress.Web;
 using DevExpress.XtraPrinting;
@@ -32,21 +34,6 @@ namespace DemoSoftMigration.Pages
             #endregion
         }
 
-        protected void Grid_ToolbarItemClick(object source, ASPxGridToolbarItemClickEventArgs e)
-        {
-            ASPxGridView grid = (ASPxGridView)source;
-            switch (e.Item.Name)
-            {
-                case "CustomExportToXLS":
-                    grid.ExportXlsToResponse(new XlsExportOptionsEx { ExportType = ExportType.WYSIWYG });
-                    break;
-                case "CustomExportToXLSX":
-                    grid.ExportXlsxToResponse(new XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
-                    break;
-                default:
-                    break;
-            }
-        }
 
         protected void AddButton_Click(object sender, EventArgs e)
         {
@@ -65,7 +52,7 @@ namespace DemoSoftMigration.Pages
 
         protected void RemoveButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Remove", Language);
+            DatabaseActions(SelectedAction: "Delete", Language);
         }
 
         protected void RefreshButton_Click(object sender, EventArgs e)
@@ -159,6 +146,11 @@ namespace DemoSoftMigration.Pages
             //}
         }
 
+        protected void ExportCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ExportTo(ExportCombobox.Text);
+        }
+
         #region Get selected row data
         private string GetSelectedRowOrderID()
         {
@@ -189,6 +181,8 @@ namespace DemoSoftMigration.Pages
         #region Database actions
         private void DatabaseActions(string SelectedAction, string Language)
         {
+            long OrderIdvar = GetOrderId();
+            ConnectionString = CreateConnectionstring();
             switch (SelectedAction)
             {
                 case "Add":
@@ -207,18 +201,16 @@ namespace DemoSoftMigration.Pages
                         PassVariableToPage("Inspect");
                         break;
                     }
-                case "Remove":
+                case "Delete":
                     {
-                        long OrderIdvar = GetOrderId();
                         if (OrderIdvar == -1)
                         {
                             NoEntrySelected();
                         }
                         else
                         {
-                            RemoveElement(Language, OrderIdvar);
+                            RemoveElement(Language, OrderID: OrderIdvar);
                         }
-
                         break;
                     }
                 case "Reload":
@@ -228,23 +220,14 @@ namespace DemoSoftMigration.Pages
                     }
                 case "History":
                     {
-                        long OrderIdvar = GetOrderId();
                         if (OrderIdvar == -1)
                         {
                             NoEntrySelected();
                         }
                         else
                         {
-                            OrderIdvar = GetOrderId();
-                            if (OrderIdvar == -1)
-                            {
-                                NoEntrySelected();
-                            }
-                            else
-                            {
-                                Session["OrderID"] = OrderIdvar.ToString();
-                                Server.Transfer("History.aspx");
-                            }
+                            Session["OrderID"] = OrderIdvar.ToString();
+                            Server.Transfer("History.aspx");
                         }
                         break;
                     }
@@ -340,6 +323,46 @@ namespace DemoSoftMigration.Pages
         }
         #endregion
 
+        #region Export Data
+        private void ExportTo(string ExportType)
+        {
+            switch (ExportType)
+            {
+                case "PDF":
+                    {
+                        ASPxGridViewExporterData.WritePdfToResponse("Orders exported" + DateTime.Now.ToString("dd-MM-yyyy"));
+                        break;
+                    }
+                case "XLS (Data Aware)":
+                    {
+                        ASPxGridViewExporterData.WriteXlsToResponse("Orders exported" + DateTime.Now.ToString("dd-MM-yyyy"));
+                        break;
+                    }
+                case "XLSX (Data Aware)":
+                    {
+                        ASPxGridViewExporterData.WriteXlsxToResponse("Orders exported" + DateTime.Now.ToString("dd-MM-yyyy"));
+                        break;
+                    }
+                case "RTF":
+                    {
+                        ASPxGridViewExporterData.WriteRtfToResponse("Orders exported" + DateTime.Now.ToString("dd-MM-yyyy"));
+                        break;
+                    }
+                case "CSV":
+                    {
+                        ASPxGridViewExporterData.WriteCsvToResponse("Orders exported" + DateTime.Now.ToString("dd-MM-yyyy"));
+                        break;
+                    }
+                case "DOCX":
+                    {
+                        ASPxGridViewExporterData.WriteDocxToResponse("Orders exported" + DateTime.Now.ToString("dd-MM-yyyy"));
+                        break;
+                    }
+                default: { break; }
+            }
+        }
+        #endregion
+
         #region No entry selected messange
         private void NoEntrySelected()
         {
@@ -353,7 +376,6 @@ namespace DemoSoftMigration.Pages
             }
         }
         #endregion
-
 
         #region SQL Commands
 
@@ -369,9 +391,9 @@ namespace DemoSoftMigration.Pages
             return Convertion;
         }
         #endregion
-        #region Queries
 
-        public DataSet FillTableInfo()
+        #region Fill table
+        private DataSet FillTableInfo()
         {
             var Query = "SELECT * FROM [dbo].[orders] ;";
             SqlDataAdapter DataAdapter = new SqlDataAdapter(Query, CreateConnectionstring());
@@ -380,117 +402,12 @@ namespace DemoSoftMigration.Pages
             DataAdapter.Fill(DataSetVariable);
             return DataSetVariable;
         }
-
-        #region Add new entry
-        public void AddNewElement(string Language, string CustomerID, long EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate, int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, long ShipPostalCode, string ShipCountry)
-        {
-
-            ConnectionString = CreateConnectionstring();
-            //NOCHECK CONSTRAINT is temporarly disabling the foreign key restriction to modify/add a new value to the table
-            //CHECK CONSTRAINT is enabling the foreign key restriction of modification of data
-
-            var Query = "ALTER TABLE[dbo].[Orders] NOCHECK CONSTRAINT all;" +
-
-                "Insert into[dbo].[Orders] ([CustomerID], [EmployeeID],[OrderDate],[RequiredDate],[ShippedDate],[ShipVia],[Freight],[ShipName],[ShipAddress],[ShipCity],[ShipRegion],[ShipPostalCode],[ShipCountry]) values(@CustomerID,@EmployeeID,@OrderDate,@RequiredDate,@ShippedDate,@ShipVia,@Freight,@ShipName,@ShipAddress,@ShipCity,@ShipRegion, @ShipPostalCode, @ShipCountry);" +
-
-                "ALTER TABLE[dbo].[Orders] CHECK CONSTRAINT all; " +
-                "DECLARE @NewOrderID bigint;" +
-
-                // if the table for modification history exists then just add the data
-                "IF (OBJECT_ID('dbo.History', 'U')) IS NOT NULL " +
-                        "BEGIN " +
-                        // it could be easier if the where clause was based on the Date and time the add was made, but i will stay in the script of northwind without adding additional column
-                        "SELECT @NewOrderID = [OrderID] FROM[dbo].[Orders]  WHERE( [CustomerID] = @CustomerID AND [EmployeeID] = @EmployeeID AND [OrderDate] = @OrderDate AND [RequiredDate] = @RequiredDate AND [ShippedDate] = @ShippedDate  AND [ShipVia] = @ShipVia AND [Freight] = @Freight AND [ShipAddress]=@ShipAddress AND [ShipCity] = @ShipCity AND [ShipRegion] = @ShipRegion AND [ShipPostalCode] = @ShipPostalCode AND [ShipCountry] = @ShipCountry );" +
-
-                        "INSERT INTO [dbo].[History] ([DateModified],[Type],[OrderID],[CustomerID], [EmployeeID],[OrderDate],[RequiredDate],[ShippedDate],[ShipVia],[Freight],[ShipName],[ShipAddress],[ShipCity],[ShipRegion],[ShipPostalCode],[ShipCountry]) values(@DateModified,@Type,@NewOrderID,@CustomerID,@EmployeeID,@OrderDate,@RequiredDate,@ShippedDate,@ShipVia,@Freight,@ShipName,@ShipAddress,@ShipCity,@ShipRegion, @ShipPostalCode, @ShipCountry);" +
-                        "END " +
-
-                        // if the table for modification history DOES NOT exists then create it and add the data
-                        "ELSE " +
-                        "Begin " +
-                        "SELECT @NewOrderID = [OrderID] FROM[dbo].[Orders]  WHERE( [CustomerID] = @CustomerID AND [EmployeeID] = @EmployeeID AND [OrderDate] = @OrderDate AND [RequiredDate] = @RequiredDate AND [ShippedDate] = @ShippedDate  AND [ShipVia] = @ShipVia AND [Freight] = @Freight AND [ShipAddress]=@ShipAddress AND [ShipCity] = @ShipCity AND [ShipRegion] = @ShipRegion AND [ShipPostalCode] = @ShipPostalCode AND [ShipCountry] = @ShipCountry );" +
-
-                        "INSERT INTO [dbo].[History] ([DateModified],[Type],[OrderID],[CustomerID], [EmployeeID],[OrderDate],[RequiredDate],[ShippedDate],[ShipVia],[Freight],[ShipName],[ShipAddress],[ShipCity],[ShipRegion],[ShipPostalCode],[ShipCountry]) values(@DateModified,@Type,@NewOrderID,@CustomerID,@EmployeeID,@OrderDate,@RequiredDate,@ShippedDate,@ShipVia,@Freight,@ShipName,@ShipAddress,@ShipCity,@ShipRegion, @ShipPostalCode, @ShipCountry);" +
-
-                        "CREATE TABLE [dbo].[History] ([DateModified] Datetime NOT NULL,[Type] NCHAR (15) NULL ,[OrderID] INT NOT NULL,[CustomerID] NCHAR (5) NULL,[EmployeeID] INT NULL,[OrderDate] DATETIME NULL,[RequiredDate] DATETIME NULL,[ShippedDate] DATETIME NULL,[ShipVia] INT NULL,[Freight]  MONEY DEFAULT ((0)) NULL,[ShipName] NVARCHAR (40) NULL,[ShipAddress] NVARCHAR(60) NULL,[ShipCity] NVARCHAR (15) NULL,[ShipRegion] NVARCHAR (15) NULL,[ShipPostalCode] NVARCHAR (10) NULL,[ShipCountry] NVARCHAR (15) NULL); " +
-                        "END";
-
-            using (Command = new SqlCommand(Query, ConnectionString))
-            {
-                Command.Parameters.AddWithValue("@DateModified", DateTime.Now);
-                Command.Parameters.AddWithValue("@Type", "Original");
-                Command.Parameters.AddWithValue("@CustomerID", CustomerID);
-                Command.Parameters.AddWithValue("@EmployeeID", EmployeeID);
-                Command.Parameters.AddWithValue("@OrderDate", OrderDate);
-                Command.Parameters.AddWithValue("@RequiredDate", RequiredDate);
-                Command.Parameters.AddWithValue("@ShippedDate", ShippedDate);
-                Command.Parameters.AddWithValue("@ShipVia", ShipVia);
-                Command.Parameters.AddWithValue("@Freight", Freight);
-                Command.Parameters.AddWithValue("@ShipName", ShipName);
-                Command.Parameters.AddWithValue("@ShipAddress", ShipAddress);
-                Command.Parameters.AddWithValue("@ShipCity", ShipCity);
-                Command.Parameters.AddWithValue("@ShipRegion", ShipRegion);
-                Command.Parameters.AddWithValue("@ShipPostalCode", ShipPostalCode);
-                Command.Parameters.AddWithValue("@ShipCountry", ShipCountry);
-
-                SqlExecution(Language, ConnectionString, Command);
-            }
-        }
-        #endregion
-
-        #region Modify selected entry
-        public void ModifyElement(string Language, long OrderID, string CustomerID, long EmployeeID, DateTime OrderDate, DateTime RequiredDate, DateTime ShippedDate, int ShipVia, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, long ShipPostalCode, string ShipCountry)
-        {
-            ConnectionString = CreateConnectionstring();
-
-            string Query = @"ALTER TABLE [dbo].[Orders] NOCHECK CONSTRAINT all;
-
-            UPDATE [dbo].[Orders] SET [CustomerID]=@CustomerID,[EmployeeID]=@EmployeeID,[OrderDate]=@OrderDate,[RequiredDate]=@RequiredDate,[ShippedDate]=@ShippedDate,[ShipVia]=@ShipVia,[Freight]=@Freight,[ShipName]=@ShipName,[ShipAddress]=@ShipName,[ShipCity]=@ShipCity,[ShipRegion]=@ShipRegion,[ShipPostalCode]=@ShipPostalCode,[ShipCountry]=@ShipCountry WHERE ([OrderID]=@OrderID);
-
-            ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT all;
-
-            IF (OBJECT_ID('dbo.History', 'U')) IS NOT NULL " +
-                        "BEGIN " +
-
-                        "INSERT INTO [dbo].[History] ([DateModified],[Type],[OrderID],[CustomerID], [EmployeeID],[OrderDate],[RequiredDate],[ShippedDate],[ShipVia],[Freight],[ShipName],[ShipAddress],[ShipCity],[ShipRegion],[ShipPostalCode],[ShipCountry]) values(@DateModified,@Type,@OrderID,@CustomerID,@EmployeeID,@OrderDate,@RequiredDate,@ShippedDate,@ShipVia,@Freight,@ShipName,@ShipAddress,@ShipCity,@ShipRegion, @ShipPostalCode, @ShipCountry);" +
-
-                        "END " +
-                        "ELSE " +
-                        "Begin " +
-
-                        "CREATE TABLE [dbo].[History] ([DateModified] Datetime NOT NULL,[Type] NCHAR (15) NULL ,[OrderID] INT NOT NULL,[CustomerID] NCHAR (5) NULL,[EmployeeID] INT NULL,[OrderDate] DATETIME NULL,[RequiredDate] DATETIME NULL,[ShippedDate] DATETIME NULL,[ShipVia] INT NULL,[Freight]  MONEY DEFAULT ((0)) NULL,[ShipName] NVARCHAR (40) NULL,[ShipAddress] NVARCHAR(60) NULL,[ShipCity] NVARCHAR (15) NULL,[ShipRegion] NVARCHAR (15) NULL,[ShipPostalCode] NVARCHAR (10) NULL,[ShipCountry] NVARCHAR (15) NULL); " +
-
-                        "INSERT INTO[dbo].[History] ([DateModified],[Type],[OrderID],[CustomerID], [EmployeeID],[OrderDate],[RequiredDate],[ShippedDate],[ShipVia],[Freight],[ShipName],[ShipAddress],[ShipCity],[ShipRegion],[ShipPostalCode],[ShipCountry]) values(@DateModified, @Type, @OrderID, @CustomerID, @EmployeeID, @OrderDate, @RequiredDate, @ShippedDate, @ShipVia, @Freight, @ShipName, @ShipAddress, @ShipCity, @ShipRegion, @ShipPostalCode, @ShipCountry);" +
-                        "END";
-
-            using (Command = new SqlCommand(Query, ConnectionString))
-            {
-                Command.Parameters.AddWithValue("@DateModified", DateTime.Now);
-                Command.Parameters.AddWithValue("@Type", "Modified");
-                Command.Parameters.AddWithValue("@OrderID", OrderID);
-                Command.Parameters.AddWithValue("@CustomerID", CustomerID);
-                Command.Parameters.AddWithValue("@EmployeeID", EmployeeID);
-                Command.Parameters.AddWithValue("@OrderDate", OrderDate);
-                Command.Parameters.AddWithValue("@RequiredDate", RequiredDate);
-                Command.Parameters.AddWithValue("@ShippedDate", ShippedDate);
-                Command.Parameters.AddWithValue("@ShipVia", ShipVia);
-                Command.Parameters.AddWithValue("@Freight", Freight);
-                Command.Parameters.AddWithValue("@ShipName", ShipName);
-                Command.Parameters.AddWithValue("@ShipAddress", ShipAddress);
-                Command.Parameters.AddWithValue("@ShipCity", ShipCity);
-                Command.Parameters.AddWithValue("@ShipRegion", ShipRegion);
-                Command.Parameters.AddWithValue("@ShipPostalCode", ShipPostalCode);
-                Command.Parameters.AddWithValue("@ShipCountry", ShipCountry);
-
-                SqlExecution(Language, ConnectionString, Command);
-            }
-        }
         #endregion
 
         #region Remove selected entry
-        public void RemoveElement(string Language, long OrderID)
+
+        private void RemoveElement(string Language, long OrderID)
         {
-            ConnectionString = CreateConnectionstring();
             string Query = @"ALTER TABLE [dbo].[Orders] NOCHECK CONSTRAINT all;
 
             DELETE FROM [dbo].[Orders] WHERE ([OrderID]=@OrderID);
@@ -505,20 +422,6 @@ namespace DemoSoftMigration.Pages
                 SqlExecution(Language, ConnectionString, Command);
             }
         }
-        #endregion
-
-        #region populate Modification history of the selected entry
-        public DataSet ModificationHistory(string Language, long OrderID)
-        {
-            ConnectionString = CreateConnectionstring();
-            string Query = $"SELECT * FROM [dbo].[History] where [ORDERID]={OrderID};";
-            SqlDataAdapter DataAdapter = new SqlDataAdapter(Query, CreateConnectionstring());
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(DataAdapter);
-            DataSet DataSetVariable = new DataSet();
-            DataAdapter.Fill(DataSetVariable);
-            return DataSetVariable;
-        }
-        #endregion
         #endregion
 
         #region Execute User Commands
@@ -563,9 +466,13 @@ namespace DemoSoftMigration.Pages
                 ClientScript.RegisterStartupScript(GetType(), SQLHeaderResult, "alert('" + SQLMessageResult + "');", true);
             }
         }
+
+        private class PrintableComponentLink
+        {
+        }
+
+        #endregion
+
         #endregion
     }
-    #endregion
-
-
 }
