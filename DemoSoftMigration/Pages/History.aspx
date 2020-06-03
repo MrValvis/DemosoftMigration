@@ -93,6 +93,7 @@
                 </div>
                 <h4 id="Copyrights" />
             </div>
+            <asp:HiddenField ID="LanguageHiddenField" runat="server"/>
         </footer>
     </form>
 </body>

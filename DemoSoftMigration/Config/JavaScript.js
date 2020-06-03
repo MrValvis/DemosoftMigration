@@ -1,11 +1,9 @@
-﻿var Language = "English";
-
+﻿
 function CDT() {
+    var CurrentLanguage = document.getElementById("LanguageHiddenField").value;
     Copyright();
-    LoadLanguage(Language);
-    alert("testing");
+    LoadLanguage(CurrentLanguage);
 }
-
 
 function Copyright() {
     var VersionNo = "1.0";
@@ -22,18 +20,27 @@ function Copyright() {
 }
 
 //#region Language 
-function ChangeLanguage() {
-    Language = Language === "English" ? "Greek" : "English";
+function ChangeLanguage(ChangeLanguageTo) {
+    var CurrentLanguage = document.getElementById("LanguageHiddenField").value;
+
+    if (ChangeLanguageTo === 'EN') {
+        document.getElementById("LanguageHiddenField").value = 'English';
+        var Language = 'English';
+    }
+    else {
+        document.getElementById("LanguageHiddenField").value = 'Greek';
+        var Language = 'Greek';
+    }
     LoadLanguage(Language);
 }
 
 
-function LoadLanguage(Language) {
-    var ElementsInEnglish = document.getElementsByClassName("English");
-    var ElementsInGreek = document.getElementsByClassName("Greek");
+function LoadLanguage(CurrentLanguage) {
+    var ElementsInEnglish = document.getElementsByClassName('English');
+    var ElementsInGreek = document.getElementsByClassName('Greek');
     var i=0;
 
-    if (Language === "English") {
+    if (CurrentLanguage === "English") {
 
         for (i = 0; i < ElementsInEnglish.length; i++) {
             document.getElementsByClassName('Greek')[i].style.display = 'none';
@@ -41,7 +48,7 @@ function LoadLanguage(Language) {
         for (i = 0; i < ElementsInGreek.length; i++) {
             document.getElementsByClassName('English')[i].style.display = 'block';
         }
-        document.getElementById('ASPxHiddenFieldLanugage').value = "English";
+        document.getElementById('LanguageHiddenField').value = 'English';
     }
     else {
 
@@ -51,10 +58,9 @@ function LoadLanguage(Language) {
         for (i = 0; i < ElementsInGreek.length; i++) {
             document.getElementsByClassName('English')[i].style.display = 'none';
         }
-        document.getElementById('ASPxHiddenFieldLanugage').value = "Greek";
+        document.getElementById('LanguageHiddenField').value = 'Greek';
     }
 }
-//#EndRegion Language
 
 function CPH() {
     window.location.href = "WebForm.aspx";
@@ -68,12 +74,8 @@ function CPPolicy() {
     window.location.href = "Privacy.aspx";
 }
 
-function test() {
-    alert("working");
-}
-
-function DatagridHelp(Language) {
-    if (Language === "English") {
+function DatagridHelp(CurrentLanguage) {
+    if (CurrentLanguage === "English") {
         alert("Εικονίδια κοινωνικών δικτύων : \n" +
             "1)facebook\n" +
             "2)Linkedin\n" +
@@ -132,8 +134,8 @@ function DatagridHelp(Language) {
     }
 }
 
-function DataHelp(Language){
-    if (Language === "English") {
+function DataHelp(CurrentLanguage){
+    if (CurrentLanguage === "English") {
         alert("English text help");
     }
     else {

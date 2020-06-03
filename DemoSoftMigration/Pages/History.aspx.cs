@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DemoSoftMigration.Pages
 {
@@ -15,6 +10,9 @@ namespace DemoSoftMigration.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             OrderID = Convert.ToInt64(Session["OrderID"]);
+            string Language = Session["Language"].ToString();
+            LanguageHiddenField.Value = Language;
+            
             //This line is used in item menu
             GridViewFeaturesHelper.SetupGlobalGridViewBehavior(ASPxGridViewData);
 

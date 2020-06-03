@@ -11,15 +11,19 @@ namespace DemoSoftMigration.Pages
         string SQLHeaderResult;
         private SqlCommand Command;
         private SqlConnection ConnectionString;
-        string Language = "English";
+        string Language;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Variable declaration and initialization
+            Language = Session["Language"].ToString();
+            LanguageHiddenField.Value = Language;
+
             OrderDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
             RequiredDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
             ShippedDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-            #region Variable declaration
+            
             SelectedType = Session["Type"].ToString();
             //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + SelectedType + "');", true);
             var OrderID = "";

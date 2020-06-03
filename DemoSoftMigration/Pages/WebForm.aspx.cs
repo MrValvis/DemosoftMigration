@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
-using System.Windows.Forms;
-using DevExpress.Export;
-using DevExpress.Web;
-using DevExpress.XtraPrinting;
-
 
 namespace DemoSoftMigration.Pages
 {
@@ -16,13 +10,10 @@ namespace DemoSoftMigration.Pages
         SqlCommand Command;
         string SQLMessageResult;
         string SQLHeaderResult;
-        string Language = "English";
-
-        //string Language = LanguageHiddenField.Value;
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            LanguageHiddenField.Value = "English";
             //This line is used in item menu
             GridViewFeaturesHelper.SetupGlobalGridViewBehavior(ASPxGridViewData);
 
@@ -37,113 +28,32 @@ namespace DemoSoftMigration.Pages
 
         protected void AddButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Add", Language);
+            DatabaseActions(SelectedAction: "Add", LanguageHiddenField.Value.ToString());
         }
 
         protected void ModifyButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Modify", Language);
+            DatabaseActions(SelectedAction: "Modify", LanguageHiddenField.Value.ToString());
         }
 
         protected void InspectButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Inspect", Language);
+            DatabaseActions(SelectedAction: "Inspect", LanguageHiddenField.Value.ToString());
         }
 
         protected void RemoveButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Delete", Language);
+            DatabaseActions(SelectedAction: "Delete", LanguageHiddenField.Value.ToString());
         }
 
         protected void RefreshButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Refresh", Language);
+            DatabaseActions(SelectedAction: "Refresh", LanguageHiddenField.Value.ToString());
         }
 
         protected void HistoryButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "History", Language);
-        }
-
-        protected void ExportDropDown_TextChanged(object sender, EventArgs e)
-        {
-            //string ExportPath = @"C:\Users\CODEX\Desktop\ExportedData";
-            //DialogResult Result;
-
-            //if (LanguageChange.Text == "Greek")
-            //{
-            //    Result = MessageBox.Show($"Are you sure you want to export the data in : {ExportImageCombo.SelectedItem} format\nat the {ExportPath} ", "Export data type confirmation", MessageBoxButtons.YesNo);
-            //}
-            //else
-            //{
-            //    Result = MessageBox.Show($"Είσαστε σίγουροι οτι θέλετε να εξάγετε τα δεδομένα στην μορφή {ExportImageCombo.SelectedItem} \nστην τοποθεσία {ExportPath}", "Επιβεβαίωση τύπου εξαγωγής δεδομένων.", MessageBoxButtons.YesNo);
-            //}
-
-            //if (Result == DialogResult.Yes)
-            //{
-            //    switch (ExportImageCombo.Text)
-            //    {
-            //        case "PDF":
-            //            {
-            //                DatagridControl.ExportToPdf(ExportPath + ".PDF");
-            //                break;
-            //            }
-            //        case "XLS (Data Aware)":
-            //            {
-            //                DatagridControl.ExportToXls(ExportPath + ".XLS");
-            //                break;
-            //            }
-            //        case "XLS (WYSIWYG)":
-            //            {
-            //                DatagridControl.ExportToPdf(ExportPath + ".XLS");
-            //                break;
-            //            }
-            //        case "XLSX (Data Aware)":
-            //            {
-            //                DatagridControl.ExportToXlsx(ExportPath + ".XLSX");
-            //                break;
-            //            }
-            //        case "RTF":
-            //            {
-            //                DatagridControl.ExportToRtf(ExportPath + ".RTF");
-            //                break;
-            //            }
-            //        case "CSV":
-            //            {
-            //                DatagridControl.ExportToCsv(ExportPath + ".CSV");
-            //                break;
-            //            }
-            //        case "DOCX":
-            //            {
-            //                DatagridControl.ExportToDocx(ExportPath + ".DOCX");
-            //                break;
-            //            }
-            //        case "IMG":
-            //            {
-            //                // Create a PrintingSystem component.
-            //                PrintingSystem ps = new PrintingSystem();
-            //                // Create a link that will print a control.
-            //                PrintableComponentLink link = new PrintableComponentLink(ps);
-            //                // Specify the control to be printed.
-            //                link.Component = DatagridControl;
-            //                // Generate a report.
-            //                link.CreateDocument();
-            //                // Export the report to a PDF file.
-            //                link.PrintingSystem.ExportToPdf(ExportPath + ".PDF");
-            //                break;
-            //            }
-            //        case "HTML":
-            //            {
-            //                DatagridControl.ExportToHtml(ExportPath + ".HTML");
-            //                break;
-            //            }
-            //        case "MHT":
-            //            {
-            //                DatagridControl.ExportToMht(ExportPath + ".MHT");
-            //                break;
-            //            }
-            //    }
-            //}
+            DatabaseActions(SelectedAction: "History", LanguageHiddenField.Value.ToString());
         }
 
         protected void ExportCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -165,7 +75,7 @@ namespace DemoSoftMigration.Pages
             catch (Exception Error)
             {
                 // if user has not selected any entry instead of error he will encounter a messagebox informing him
-                if (Language == "English")
+                if (LanguageHiddenField.Value.ToString() == "English")
                 {
                     ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
                 }
@@ -240,6 +150,7 @@ namespace DemoSoftMigration.Pages
         #region Passing variables to child page
         private void PassVariableToPage(string SelectedType)
         {
+            var SelectedLanguage = LanguageHiddenField.Value.ToString();
             var OrderID = ASPxGridViewData.GetSelectedFieldValues("OrderID");
             var CustomerID = ASPxGridViewData.GetSelectedFieldValues("CustomerID");
             var EmployeeID = ASPxGridViewData.GetSelectedFieldValues("EmployeeID");
@@ -263,6 +174,7 @@ namespace DemoSoftMigration.Pages
                     // it will create out of bound exception if there is no selected row, it will be modified in patch
                 }
 
+                Session["Language"] = SelectedLanguage;
                 if (SelectedType == "Modify")
                 {
                     Session["Type"] = "Modify";
@@ -290,7 +202,7 @@ namespace DemoSoftMigration.Pages
             catch (Exception Error)
             {
                 // if user has not selected any entry instead of error he will encounter a messagebox informing him
-                if (Language == "English")
+                if (LanguageHiddenField.Value.ToString() == "English")
                 {
                     ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
                 }
@@ -366,7 +278,7 @@ namespace DemoSoftMigration.Pages
         #region No entry selected messange
         private void NoEntrySelected()
         {
-            if (Language == "English")
+            if (LanguageHiddenField.Value.ToString() == "English")
             {
                 ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
             }
