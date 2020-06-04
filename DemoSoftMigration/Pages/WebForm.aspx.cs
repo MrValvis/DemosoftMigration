@@ -324,19 +324,19 @@ namespace DemoSoftMigration.Pages
 
         private void RemoveElement(string Language, long OrderID)
         {
-            string Query = @"ALTER TABLE [dbo].[Orders] NOCHECK CONSTRAINT ALL;
-            ALTER TABLE [dbo].[Order Details] NOCHECK CONSTRAINT ALL;
-            DELETE FROM [dbo].[Orders] WHERE ([OrderID]=OrderID);
-            DELETE FROM [dbo].[Order Details] WHERE ([OrderID]=OrderID);
-            DELETE FROM [dbo].[History] WHERE ([OrderID]=OrderID);
-            ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT all;
-            ALTER TABLE [dbo].[Order Details] CHECK CONSTRAINT all;";
+            //string Query = @"ALTER TABLE [dbo].[Orders] NOCHECK CONSTRAINT ALL;
+            //ALTER TABLE [dbo].[Order Details] NOCHECK CONSTRAINT ALL;
+            //DELETE FROM [dbo].[Orders] WHERE ([OrderID]=OrderID);
+            //DELETE FROM [dbo].[Order Details] WHERE ([OrderID]=OrderID);
+            //DELETE FROM [dbo].[History] WHERE ([OrderID]=OrderID);
+            //ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT all;
+            //ALTER TABLE [dbo].[Order Details] CHECK CONSTRAINT all;";
 
-            using (Command = new SqlCommand(Query, ConnectionString))
-            {
-                Command.Parameters.AddWithValue("@OrderID", OrderID);
-                SqlExecution(Language, ConnectionString, Command);
-            }
+            //using (Command = new SqlCommand(Query, ConnectionString))
+            //{
+            //    Command.Parameters.AddWithValue("@OrderID", OrderID);
+            //    SqlExecution(Language, ConnectionString, Command);
+            //}
         }
         #endregion
 
