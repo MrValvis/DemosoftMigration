@@ -1,7 +1,6 @@
-﻿
-function CDT() {
+﻿function CDT() {
     var CurrentLanguage = document.getElementById("LanguageHiddenField").value;
-    Copyright();
+    //Copyright();
     LoadLanguage(CurrentLanguage);
 }
 
@@ -22,20 +21,22 @@ function Copyright() {
 //#region Language 
 function ChangeLanguage(ChangeLanguageTo) {
     var CurrentLanguage = document.getElementById("LanguageHiddenField").value;
+    var Language;
 
     if (ChangeLanguageTo === 'EN') {
         document.getElementById("LanguageHiddenField").value = 'English';
-        var Language = 'English';
+        Language = 'English';
     }
     else {
         document.getElementById("LanguageHiddenField").value = 'Greek';
-        var Language = 'Greek';
+        Language = 'Greek';
     }
     LoadLanguage(Language);
 }
 
 
 function LoadLanguage(CurrentLanguage) {
+
     var ElementsInEnglish = document.getElementsByClassName('English');
     var ElementsInGreek = document.getElementsByClassName('Greek');
     var i=0;
@@ -67,11 +68,13 @@ function CPH() {
 }
 
 function CPTerms() {
-    window.location.href = "Terms.aspx";
+    document.getElementById("RedirectToTerms").click();
+    javascript: __doPostBack('RedirectToTerms');
 }
 
 function CPPolicy() {
-    window.location.href = "Privacy.aspx";
+    document.getElementById("RedirectToPrivacy").click();
+    javascript: __doPostBack('RedirectToPrivacy');
 }
 
 function DatagridHelp(CurrentLanguage) {

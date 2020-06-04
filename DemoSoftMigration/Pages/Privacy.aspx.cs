@@ -10,9 +10,16 @@ namespace DemoSoftMigration.Pages
             LanguageHiddenField.Value = Language;
         }
 
+        protected void RedirectToTerms_Click(object sender, EventArgs e)
+        {
+            var SelectedLanguage = LanguageHiddenField.Value.ToString();
+            Session["Language"] = SelectedLanguage;
+            Response.Redirect("Terms.aspx");
+        }
+
         protected void BackButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("WebForm.aspx");
-        }
+        } 
     }
 }

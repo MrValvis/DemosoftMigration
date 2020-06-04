@@ -103,6 +103,24 @@ namespace DemoSoftMigration.Pages {
         protected global::DevExpress.Web.ASPxGridViewExporter ASPxGridViewExporterData;
         
         /// <summary>
+        /// RedirectToTerms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton RedirectToTerms;
+        
+        /// <summary>
+        /// RedirectToPrivacy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton RedirectToPrivacy;
+        
+        /// <summary>
         /// LanguageHiddenField control.
         /// </summary>
         /// <remarks>

@@ -17,14 +17,13 @@ namespace DemoSoftMigration.Pages
         {
             #region Variable declaration and initialization
             Language = Session["Language"].ToString();
-            LanguageHiddenField.Value = Language;
+            SelectedType = Session["Type"].ToString();
 
             OrderDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
             RequiredDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
             ShippedDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
-
             
-            SelectedType = Session["Type"].ToString();
+            LanguageHiddenField.Value = Language;
             //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + SelectedType + "');", true);
             var OrderID = "";
             var CustomerID = "";
@@ -40,13 +39,14 @@ namespace DemoSoftMigration.Pages
             var ShipRegion = "";
             var ShipPostalCode = "";
             var ShipCountry = "";
+
             #endregion
 
             if ((SelectedType == "Modify") || (SelectedType == "Inspect"))
             {
                 OrderID = Session["OrderID"].ToString();
                 CustomerID = Session["CustomerID"].ToString();
-                EmployeeID = Session["CustomerID"].ToString();
+                EmployeeID = Session["EmployeeID"].ToString();
                 OrderDate = Convert.ToDateTime(Session["OrderDate"]);
                 RequiredDate = Convert.ToDateTime(Session["RequiredDate"].ToString());
                 ShippedDate = Convert.ToDateTime(Session["ShippedDate"].ToString());
@@ -74,7 +74,7 @@ namespace DemoSoftMigration.Pages
                     ShipAddressTextbox.Text = ShipAddress.ToString();
                     ShipCityTextbox.Text = ShipCity.ToString();
                     ShipRegionTextbox.Text = ShipRegion.ToString();
-                    ShipPostal.Text = ShipPostalCode.ToString();
+                    ShipPostalTextbox.Text = ShipPostalCode.ToString();
                     ShipCountryTextbox.Text = ShipCountry.ToString();
                 }
                 else
@@ -115,20 +115,21 @@ namespace DemoSoftMigration.Pages
 
         protected void OkButton_Click(object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('"+SelectedType+"');", true);
             #region Converting textbox data to fit for the database
-            long OrderId = Convert.ToInt64(OrderIdTextbox.Text);
             string CustomerId = CustomerIdTextbox.Text;
-            long EmployId = Convert.ToInt64(EmployeeIdTextbox.Text);
+            long OrderId;
+            long EmployId = EmployeeIdTextbox.Text==""?0:Convert.ToInt64(EmployeeIdTextbox.Text);
             DateTime OrdareDate = Convert.ToDateTime(OrderDateTextbox.Text);
             DateTime RequiredDate = Convert.ToDateTime(RequiredDateTextbox.Text);
             DateTime ShippedDate = Convert.ToDateTime(ShippedDateTextbox.Text);
-            int ShipVia = Convert.ToInt32(ShipviaTextbox.Text);
-            decimal Freight = Convert.ToDecimal(FreightTextbox.Text);
+            int ShipVia = ShipviaTextbox.Text==""?0:Convert.ToInt32(ShipviaTextbox.Text);
+            decimal Freight = FreightTextbox.Text==""?0: Convert.ToDecimal(FreightTextbox.Text);
             string ShipName = ShipNameTextbox.Text;
             string ShipAddress = ShipAddressTextbox.Text;
             string ShipCity = ShipCityTextbox.Text;
             string ShipRegion = ShipRegionTextbox.Text;
-            long ShipPostalCode = Convert.ToInt64(ShipRegionTextbox.Text);
+            long ShipPostalCode = ShipPostalTextbox.Text==""?0:Convert.ToInt64(ShipPostalTextbox.Text);
             string ShipCountry = ShipCountryTextbox.Text;
             #endregion
 
@@ -151,6 +152,7 @@ namespace DemoSoftMigration.Pages
                     {
                         try
                         {
+                            OrderId = Convert.ToInt64(OrderIdTextbox.Text);
                             ModifyElement(Language, OrderId, CustomerId, EmployId, OrdareDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry);
                             Response.Redirect("WebForm.aspx");
                         }

@@ -91,12 +91,13 @@ namespace DemoSoftMigration.Pages
         #region Database actions
         private void DatabaseActions(string SelectedAction, string Language)
         {
-            long OrderIdvar = GetOrderId();
+            long OrderIdvar;
             ConnectionString = CreateConnectionstring();
             switch (SelectedAction)
             {
                 case "Add":
                     {
+                        Session["Language"] = LanguageHiddenField.Value.ToString();
                         Session["Type"] = "Add";
                         Server.Transfer("DataActionPage.aspx");
                         break;
@@ -113,6 +114,7 @@ namespace DemoSoftMigration.Pages
                     }
                 case "Delete":
                     {
+                        OrderIdvar = GetOrderId();
                         if (OrderIdvar == -1)
                         {
                             NoEntrySelected();
@@ -123,26 +125,26 @@ namespace DemoSoftMigration.Pages
                         }
                         break;
                     }
-                case "Reload":
+                case "Refresh":
                     {
                         FillTableInfo();
                         break;
                     }
                 case "History":
                     {
+                        OrderIdvar = GetOrderId();
                         if (OrderIdvar == -1)
                         {
                             NoEntrySelected();
                         }
                         else
                         {
+                            Session["Language"] = LanguageHiddenField.Value.ToString();
                             Session["OrderID"] = OrderIdvar.ToString();
                             Server.Transfer("History.aspx");
                         }
                         break;
                     }
-                case "Export":
-                    { break; }
             }
         }
         #endregion
@@ -174,15 +176,17 @@ namespace DemoSoftMigration.Pages
                     // it will create out of bound exception if there is no selected row, it will be modified in patch
                 }
 
-                Session["Language"] = SelectedLanguage;
                 if (SelectedType == "Modify")
                 {
+                    
                     Session["Type"] = "Modify";
                 }
                 else
                 {
                     Session["Type"] = "Inspect";
                 }
+
+                Session["Language"] = SelectedLanguage;
                 Session["OrderID"] = OrderID[0].ToString();
                 Session["CustomerID"] = CustomerID[0].ToString();
                 Session["EmployeeID"] = EmployeeID[0].ToString();
@@ -383,8 +387,23 @@ namespace DemoSoftMigration.Pages
         {
         }
 
+
         #endregion
 
         #endregion
+
+        protected void RedirectToTerms_Click(object sender, EventArgs e)
+        {
+            var SelectedLanguage = LanguageHiddenField.Value.ToString();
+            Session["Language"] = SelectedLanguage;
+            Response.Redirect("Terms.aspx");
+        }
+
+        protected void RedirectToPrivacy_Click(object sender, EventArgs e)
+        {
+            var SelectedLanguage = LanguageHiddenField.Value.ToString();
+            Session["Language"] = SelectedLanguage;
+            Response.Redirect("Privacy.aspx");
+        }
     }
 }

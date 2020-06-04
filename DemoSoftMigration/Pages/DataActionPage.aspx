@@ -211,8 +211,8 @@
                     <h3 class="English">Languages</h3>
                     <h3 class="Greek">Γλώσσες</h3>
                     <br />
-                    <h4 class="LangSelect" onclick="ChangeLanguage();">Greek-Ελ</h4>
-                    <h4 class="LangSelect" onclick="ChangeLanguage();">English-En</h4>
+                    <h4 class="LangSelect" onclick="ChangeLanguage('GR');">Greek-Ελ</h4>
+                    <h4 class="LangSelect" onclick="ChangeLanguage('EN');">English-En</h4>
                     <br />
                 </div>
                 <h4 id="Copyrights" />

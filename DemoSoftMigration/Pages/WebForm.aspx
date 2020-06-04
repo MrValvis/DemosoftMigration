@@ -62,7 +62,7 @@
         <div class="DatabaseActionsMenu">
             <table class="DatabaseActionsTable">
                 <tr>
-                    <th>
+                    <th >
                         <dx:ASPxButton ID="AddButton" runat="server" Text="Add" Image-Url="~/Resources/add32x32.ico" OnClick="AddButton_Click" />
                     </th>
                     <th>
@@ -97,8 +97,6 @@
             </table>
         </div>
 
-
-
         <div class="DataGridDiv" style="width: 100%; word-wrap: break-word; table-layout: fixed; font-size: smaller; overflow-x: scroll; overflow-y: hidden;">
 
             <dx:ASPxGridView ID="ASPxGridViewData" runat="server" ClientInstanceName="ASPxGridViewData" EnableTheming="True" Theme="iOS" Cursor="auto" KeyFieldName="OrderID" GridViewID="ASPxGridViewData">
@@ -112,6 +110,9 @@
             </dx:ASPxGridView>
                         <dx:ASPxGridViewExporter ID="ASPxGridViewExporterData" runat="server"></dx:ASPxGridViewExporter>
         </div>
+
+        <dx:ASPxButton ID="RedirectToTerms" runat="server" style="visibility: hidden; display: none;" OnClick="RedirectToTerms_Click"/>
+         <dx:ASPxButton ID="RedirectToPrivacy" runat="server" style="visibility: hidden; display: none;" OnClick="RedirectToPrivacy_Click"/>
 
         <footer class="container-fluid text-center">
             <div class="row">
@@ -146,8 +147,7 @@
                 <h4 id="Copyrights" />
             </div>
         </footer>
-
-        <asp:HiddenField ID="LanguageHiddenField" runat="server" Value="English" />
+        <asp:HiddenField ID="LanguageHiddenField" runat="server" />
     </form>
 </body>
 </html>

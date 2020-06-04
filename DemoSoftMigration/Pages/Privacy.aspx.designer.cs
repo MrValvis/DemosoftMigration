@@ -22,6 +22,15 @@ namespace DemoSoftMigration.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form2;
         
         /// <summary>
+        /// RedirectToTerms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton RedirectToTerms;
+        
+        /// <summary>
         /// BackButton control.
         /// </summary>
         /// <remarks>
