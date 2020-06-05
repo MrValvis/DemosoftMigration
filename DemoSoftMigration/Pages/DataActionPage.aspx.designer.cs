@@ -364,6 +364,15 @@ namespace DemoSoftMigration.Pages {
         protected global::DevExpress.Web.ASPxButton OkButton;
         
         /// <summary>
+        /// BackButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton BackButton;
+        
+        /// <summary>
         /// LanguageHiddenField control.
         /// </summary>
         /// <remarks>

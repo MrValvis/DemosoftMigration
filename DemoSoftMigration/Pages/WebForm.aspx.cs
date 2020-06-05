@@ -99,7 +99,8 @@ namespace DemoSoftMigration.Pages
                     {
                         Session["Language"] = LanguageHiddenField.Value.ToString();
                         Session["Type"] = "Add";
-                        Server.Transfer("DataActionPage.aspx");
+                        //Server.Transfer("DataActionPage.aspx");
+                        Response.Redirect("DataActionPage.aspx");
                         break;
                     }
                 case "Modify":
@@ -141,7 +142,8 @@ namespace DemoSoftMigration.Pages
                         {
                             Session["Language"] = LanguageHiddenField.Value.ToString();
                             Session["OrderID"] = OrderIdvar.ToString();
-                            Server.Transfer("History.aspx");
+                            //Server.Transfer("History.aspx");
+                            Response.Redirect("History.aspx");
                         }
                         break;
                     }

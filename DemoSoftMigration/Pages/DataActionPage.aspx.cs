@@ -176,6 +176,11 @@ namespace DemoSoftMigration.Pages
             //else { ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Is NOT Valid');", true); }
         }
 
+        protected void BackToMain_Click(object sender, EventArgs e){
+            Session["Language"] = LanguageHiddenField.Value;
+            Response.Redirect("WebForms.aspx");
+        }
+
         #region No entry selected messange
         private void ErrorMessage()
         {
@@ -354,7 +359,10 @@ namespace DemoSoftMigration.Pages
                 ClientScript.RegisterStartupScript(GetType(), SQLHeaderResult, "alert('" + SQLMessageResult + "');", true);
             }
         }
-        #endregion       
         #endregion
+
+        #endregion
+
+ 
     }
 }
