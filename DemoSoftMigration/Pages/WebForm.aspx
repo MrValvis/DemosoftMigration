@@ -45,6 +45,7 @@
                             <li><a onclick="DatagridHelp();">Help</a></li>
                             <li><a onclick="CPTerms();">Terms and conditions</a></li>
                             <li><a onclick="CPPolicy();">Privacy policy</a></li>
+
                         </ul>
                     </div>
                     <div class="Greek">
@@ -57,7 +58,6 @@
                 </div>
             </div>
         </nav>
-
 
         <div class="DatabaseActionsMenu">
             <table class="DatabaseActionsTable">

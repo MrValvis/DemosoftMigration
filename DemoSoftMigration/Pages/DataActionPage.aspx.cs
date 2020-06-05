@@ -178,7 +178,7 @@ namespace DemoSoftMigration.Pages
 
         protected void BackToMain_Click(object sender, EventArgs e){
             Session["Language"] = LanguageHiddenField.Value;
-            Response.Redirect("WebForms.aspx");
+            Response.Redirect("WebForm.aspx");
         }
 
         #region No entry selected messange
