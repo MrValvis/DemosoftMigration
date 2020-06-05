@@ -122,7 +122,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="FreightTextbox" runat="server" MaxLength="10" />
-                        <asp:RegularExpressionValidator ID="FreightTextboxValidator" runat="server" ControlToValidate="ShipviaTextbox" ErrorMessage="Only decimal numbers values are allowed in freight field (examples 1,2.33,1953.29 etc.)" ForeColor="Red" ValidationExpression="^[0-9]+(\.[0-9]{1,2})?$" />
+                        <asp:RegularExpressionValidator ID="FreightTextboxValidator" runat="server" ControlToValidate="FreightTextbox" ErrorMessage="Only decimal numbers values are allowed in freight field (examples 1,2.33,1953.29 etc.)" ForeColor="Red" ValidationExpression="^\d{0,10}(?:\.\d\d)?$" />
                     </th>
                 </tr>
                 <tr>
@@ -147,7 +147,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipCityTextbox" runat="server" MaxLength="15" />
-                        <asp:RegularExpressionValidator ID="ShipCityTextboxValidator" runat="server" ControlToValidate="ShipCityTextbox" ErrorMessage="Only letters are allowed in Ship city field" ForeColor="Red" ValidationExpression="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+                        <asp:RegularExpressionValidator ID="ShipCityTextboxValidator" runat="server" ControlToValidate="ShipCityTextbox" ErrorMessage="Only letters are allowed in Ship city field" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$" />
                     </th>
                 </tr>
                 <tr>
@@ -156,7 +156,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipRegionTextbox" runat="server" MaxLength="15" />
-                        <asp:RegularExpressionValidator ID="ShipRegionTextboxValidator" runat="server" ControlToValidate="ShipRegionTextbox" ErrorMessage="Only letters are allowed in Ship region field" ForeColor="Red" ValidationExpression="/^([a-zA-Z]+\s)*[a-zA-Z]+$/" />
+                        <asp:RegularExpressionValidator ID="ShipRegionTextboxValidator" runat="server" ControlToValidate="ShipRegionTextbox" ErrorMessage="Only letters are allowed in Ship region field" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$" />
                     </th>
                 </tr>
                 <tr>
