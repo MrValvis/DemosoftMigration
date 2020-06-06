@@ -2,7 +2,6 @@
 
 <%@ Register Assembly="DevExpress.Web.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -40,19 +39,12 @@
                     <img src="../Resources/demosoftReformatedforWeb.png" />
                 </div>
                 <div class="collapse navbar-collapse" id="NavbarMenuBurger">
-                    <div class="English">
+                    <div>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a onclick="DatagridHelp();">Help</a></li>
+                            <li><a onclick="DatagridHelp('English');">Help</a></li>
                             <li><a onclick="CPTerms();">Terms and conditions</a></li>
                             <li><a onclick="CPPolicy();">Privacy policy</a></li>
 
-                        </ul>
-                    </div>
-                    <div class="Greek">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a onclick="DatagridHelp();">Βοήθεια</a></li>
-                            <li><a onclick="CPTerms();">Όροι χρήσης</a></li>
-                            <li><a onclick="CPPolicy();">Πολιτική απορρήτου</a></li>
                         </ul>
                     </div>
                 </div>
@@ -62,7 +54,7 @@
         <div class="DatabaseActionsMenu">
             <table class="DatabaseActionsTable">
                 <tr>
-                    <th >
+                    <th>
                         <dx:ASPxButton ID="AddButton" runat="server" Text="Add" Image-Url="~/Resources/add32x32.ico" OnClick="AddButton_Click" />
                     </th>
                     <th>
@@ -81,7 +73,7 @@
                         <dx:ASPxButton ID="HistoryButton" runat="server" Text="History" Image-Url="~/Resources/history32x32.ico" OnClick="HistoryButton_Click" />
                     </th>
                     <th>
-                        <dx:ASPxComboBox ID="ExportCombobox" runat="server" Width="285px" ImageUrlField="ImageUrl" TextField="Export To" ValueField="Name" ShowImageInEditBox="True" EnableTheming="True" ReadOnly="false" Theme="iOS"  AutoPostBack="True" OnSelectedIndexChanged="ExportCombobox_SelectedIndexChanged" Caption="Export To">
+                        <dx:ASPxComboBox ID="ExportCombobox" runat="server" Width="285px" ImageUrlField="ImageUrl" TextField="Export To" ValueField="Name" ShowImageInEditBox="True" EnableTheming="True" ReadOnly="false" Theme="iOS" AutoPostBack="True" OnSelectedIndexChanged="ExportCombobox_SelectedIndexChanged" Caption="Export To">
                             <Items>
                                 <dx:ListEditItem Text="PDF" Value="0" ImageUrl="../Resources/PDFexport.ico" />
                                 <dx:ListEditItem Text="XLS (Data Aware)" Value="1" ImageUrl="../Resources/XLSExport.ico" />
@@ -108,28 +100,26 @@
                 <SettingsBehavior AllowSelectByRowClick="True" />
                 <SettingsSearchPanel Visible="True" />
             </dx:ASPxGridView>
-                        <dx:ASPxGridViewExporter ID="ASPxGridViewExporterData" runat="server"></dx:ASPxGridViewExporter>
+            <dx:ASPxGridViewExporter ID="ASPxGridViewExporterData" runat="server"></dx:ASPxGridViewExporter>
         </div>
 
-        <dx:ASPxButton ID="RedirectToTerms" runat="server" style="visibility: hidden; display: none;" OnClick="RedirectToTerms_Click"/>
-         <dx:ASPxButton ID="RedirectToPrivacy" runat="server" style="visibility: hidden; display: none;" OnClick="RedirectToPrivacy_Click"/>
+        <dx:ASPxButton ID="RedirectToTerms" runat="server" Style="visibility: hidden; display: none;" OnClick="RedirectToTerms_Click" />
+        <dx:ASPxButton ID="RedirectToPrivacy" runat="server" Style="visibility: hidden; display: none;" OnClick="RedirectToPrivacy_Click" />
+         <dx:ASPxButton ID="ChangeLanguageToGreek" runat="server" Style="visibility: hidden; display: none;" OnClick="ChangeLanguageToGreek_Click" />
 
         <footer class="container-fluid text-center">
             <div class="row">
 
                 <div class="col-sm-4">
-                    <h3 class="English">Contact </h3>
-                    <h3 class="Greek">Επικοινωνία </h3>
+                    <h3>Contact </h3>
                     <br />
                     <h4>Demosoft@info.com</h4>
                     <h4>210-1223344</h4>
-                    <h4 class="English">Charokopu 86, Kalithea</h4>
-                    <h4 class="Greek">Χαροκόπου 86, Καλλιθέα</h4>
+                    <h4>Charokopu 86, Kalithea</h4>
                 </div>
 
                 <div class="col-sm-4">
-                    <h3 class="English">Stay connected </h3>
-                    <h3 class="Greek">Μείνετε συνδεδεμένοι  </h3>
+                    <h3>Stay connected </h3>
                     <br />
                     <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
                     <a href="https://www.youtube.com/" class="fa fa-youtube"></a>
@@ -137,17 +127,15 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <h3 class="English">Languages</h3>
-                    <h3 class="Greek">Γλώσσες</h3>
+                    <h3>Languages</h3>
                     <br />
-                    <h4 class="LangSelect" onclick="ChangeLanguage('GR');">Greek-Ελ</h4>
-                    <h4 class="LangSelect" onclick="ChangeLanguage('EN');">English-En</h4>
+                    <h4 class="LangSelect" onclick="CLDAEN();">Greek-Ελ</h4>
+                    <h4 class="LangSelect">English-En</h4>
                     <br />
                 </div>
                 <h4 id="Copyrights" />
             </div>
         </footer>
-        <asp:HiddenField ID="LanguageHiddenField" runat="server" />
     </form>
 </body>
 </html>

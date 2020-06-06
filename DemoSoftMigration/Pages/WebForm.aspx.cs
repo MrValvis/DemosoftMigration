@@ -10,10 +10,10 @@ namespace DemoSoftMigration.Pages
         SqlCommand Command;
         string SQLMessageResult;
         string SQLHeaderResult;
+        string Language = "English";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            LanguageHiddenField.Value = "English";
             //This line is used in item menu
             GridViewFeaturesHelper.SetupGlobalGridViewBehavior(ASPxGridViewData);
 
@@ -28,32 +28,32 @@ namespace DemoSoftMigration.Pages
 
         protected void AddButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Add", LanguageHiddenField.Value.ToString());
+            DatabaseActions(SelectedAction: "Add", Language);
         }
 
         protected void ModifyButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Modify", LanguageHiddenField.Value.ToString());
+            DatabaseActions(SelectedAction: "Modify", Language);
         }
 
         protected void InspectButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Inspect", LanguageHiddenField.Value.ToString());
+            DatabaseActions(SelectedAction: "Inspect", Language);
         }
 
         protected void RemoveButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Delete", LanguageHiddenField.Value.ToString());
+            DatabaseActions(SelectedAction: "Delete", Language);
         }
 
         protected void RefreshButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "Refresh", LanguageHiddenField.Value.ToString());
+            DatabaseActions(SelectedAction: "Refresh", Language);
         }
 
         protected void HistoryButton_Click(object sender, EventArgs e)
         {
-            DatabaseActions(SelectedAction: "History", LanguageHiddenField.Value.ToString());
+            DatabaseActions(SelectedAction: "History", Language);
         }
 
         protected void ExportCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -75,14 +75,7 @@ namespace DemoSoftMigration.Pages
             catch (Exception Error)
             {
                 // if user has not selected any entry instead of error he will encounter a messagebox informing him
-                if (LanguageHiddenField.Value.ToString() == "English")
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Δεν βρέθηκε επιλεγμένη εγγραφή!", "alert('Δεν έχετε επιλέξει κάποια εγγραφή!');", true);
-                }
+                NoEntrySelected();
             }
             return OrderID.ToString();
         }
@@ -97,7 +90,6 @@ namespace DemoSoftMigration.Pages
             {
                 case "Add":
                     {
-                        Session["Language"] = LanguageHiddenField.Value.ToString();
                         Session["Type"] = "Add";
                         //Server.Transfer("DataActionPage.aspx");
                         Response.Redirect("DataActionPage.aspx");
@@ -140,7 +132,6 @@ namespace DemoSoftMigration.Pages
                         }
                         else
                         {
-                            Session["Language"] = LanguageHiddenField.Value.ToString();
                             Session["OrderID"] = OrderIdvar.ToString();
                             //Server.Transfer("History.aspx");
                             Response.Redirect("History.aspx");
@@ -154,7 +145,6 @@ namespace DemoSoftMigration.Pages
         #region Passing variables to child page
         private void PassVariableToPage(string SelectedType)
         {
-            var SelectedLanguage = LanguageHiddenField.Value.ToString();
             var OrderID = ASPxGridViewData.GetSelectedFieldValues("OrderID");
             var CustomerID = ASPxGridViewData.GetSelectedFieldValues("CustomerID");
             var EmployeeID = ASPxGridViewData.GetSelectedFieldValues("EmployeeID");
@@ -180,7 +170,7 @@ namespace DemoSoftMigration.Pages
 
                 if (SelectedType == "Modify")
                 {
-                    
+
                     Session["Type"] = "Modify";
                 }
                 else
@@ -188,7 +178,6 @@ namespace DemoSoftMigration.Pages
                     Session["Type"] = "Inspect";
                 }
 
-                Session["Language"] = SelectedLanguage;
                 Session["OrderID"] = OrderID[0].ToString();
                 Session["CustomerID"] = CustomerID[0].ToString();
                 Session["EmployeeID"] = EmployeeID[0].ToString();
@@ -208,14 +197,7 @@ namespace DemoSoftMigration.Pages
             catch (Exception Error)
             {
                 // if user has not selected any entry instead of error he will encounter a messagebox informing him
-                if (LanguageHiddenField.Value.ToString() == "English")
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(GetType(), "Δεν βρέθηκε επιλεγμένη εγγραφή!", "alert('Δεν έχετε επιλέξει κάποια εγγραφή!');", true);
-                }
+                NoEntrySelected();
             }
         }
         #endregion
@@ -284,14 +266,7 @@ namespace DemoSoftMigration.Pages
         #region No entry selected messange
         private void NoEntrySelected()
         {
-            if (LanguageHiddenField.Value.ToString() == "English")
-            {
-                ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(GetType(), "Δεν βρέθηκε επιλεγμένη εγγραφή!", "alert('Δεν έχετε επιλέξει κάποια εγγραφή!');", true);
-            }
+            ClientScript.RegisterStartupScript(GetType(), "No entry selected!", "alert('No entry has picked!');", true);
         }
         #endregion
 
@@ -396,16 +371,17 @@ namespace DemoSoftMigration.Pages
 
         protected void RedirectToTerms_Click(object sender, EventArgs e)
         {
-            var SelectedLanguage = LanguageHiddenField.Value.ToString();
-            Session["Language"] = SelectedLanguage;
             Response.Redirect("Terms.aspx");
         }
 
         protected void RedirectToPrivacy_Click(object sender, EventArgs e)
         {
-            var SelectedLanguage = LanguageHiddenField.Value.ToString();
-            Session["Language"] = SelectedLanguage;
             Response.Redirect("Privacy.aspx");
+        }
+
+        protected void ChangeLanguageToGreek_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("WebFormGr.aspx");
         }
     }
 }

@@ -153,6 +153,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Pages\DataActionPage.aspx" />
+    <Content Include="Pages\DataActionPageGR.aspx" />
     <Content Include="Pages\favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -168,8 +169,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Pages\History.aspx" />
+    <Content Include="Pages\HistoryGR.aspx" />
     <Content Include="Pages\Privacy.aspx" />
+    <Content Include="Pages\PrivacyGR.aspx" />
     <Content Include="Pages\Terms.aspx" />
+    <Content Include="Pages\TermsGR.aspx" />
+    <Content Include="Pages\WebFormGR.aspx" />
     <Content Include="Resources\.vs\ProjectSettings.json" />
     <Content Include="Resources\.vs\Resources\v15\.suo" />
     <Content Include="Resources\.vs\slnx.sqlite" />
@@ -238,12 +243,26 @@
     <Compile Include="Pages\DataActionPage.aspx.designer.cs">
       <DependentUpon>DataActionPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DataActionPageGR.aspx.cs">
+      <DependentUpon>DataActionPageGR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DataActionPageGR.aspx.designer.cs">
+      <DependentUpon>DataActionPageGR.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\History.aspx.cs">
       <DependentUpon>History.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\History.aspx.designer.cs">
       <DependentUpon>History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HistoryGR.aspx.cs">
+      <DependentUpon>HistoryGR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\HistoryGR.aspx.designer.cs">
+      <DependentUpon>HistoryGR.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Privacy.aspx.cs">
       <DependentUpon>Privacy.aspx</DependentUpon>
@@ -252,6 +271,13 @@
     <Compile Include="Pages\Privacy.aspx.designer.cs">
       <DependentUpon>Privacy.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PrivacyGR.aspx.cs">
+      <DependentUpon>PrivacyGR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PrivacyGR.aspx.designer.cs">
+      <DependentUpon>PrivacyGR.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Terms.aspx.cs">
       <DependentUpon>Terms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -259,12 +285,26 @@
     <Compile Include="Pages\Terms.aspx.designer.cs">
       <DependentUpon>Terms.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TermsGR.aspx.cs">
+      <DependentUpon>TermsGR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\TermsGR.aspx.designer.cs">
+      <DependentUpon>TermsGR.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WebForm.aspx.cs">
       <DependentUpon>WebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\WebForm.aspx.designer.cs">
       <DependentUpon>WebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WebFormGR.aspx.cs">
+      <DependentUpon>WebFormGR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\WebFormGR.aspx.designer.cs">
+      <DependentUpon>WebFormGR.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

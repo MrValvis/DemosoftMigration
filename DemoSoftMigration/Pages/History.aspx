@@ -20,9 +20,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="../Config/JavaScript.js"></script>
 
-    <title>Item History</title>
+    <title>Order History</title>
 </head>
-<body onload="CDT();">
+<body>
     <form id="form1" runat="server">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -36,14 +36,10 @@
                     <img src="../Resources/demosoftReformatedforWeb.png" />
                 </div>
                 <div class="collapse navbar-collapse" id="NavbarMenuBurger">
-                    <div class="English">
+                    <div>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a onclick="DatagridHelp();">Help</a></li>
-                        </ul>
-                    </div>
-                    <div class="Greek">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a onclick="DatagridHelp();">Βοήθεια</a></li>
+                            <li><a onclick="CPHome();">Home</a></li>
+                            <li><a onclick="HistoryHelp('English');">Help</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,24 +55,21 @@
                 <SettingsSearchPanel Visible="True" />
             </dx:ASPxGridView>
         </div>
-        <dx:ASPxButton ID="ASPxOkButton" runat="server" Text="Ok" HorizontalAlign="Center" OnClick="ASPxOkButton_Click" Theme="MetropolisBlue" style="display: flex;justify-content: center;align-items: center;"/>
-
+        <dx:ASPxButton ID="RedirectToHome" runat="server" Style="visibility: hidden; display: none;" OnClick="RedirectToHome_Click" />
+        <dx:ASPxButton ID="ChangeLanguageToGreek" runat="server" Style="visibility: hidden; display: none;" OnClick="ChangeLanguageToGreek_Click" />
         <footer class="container-fluid text-center">
             <div class="row">
 
                 <div class="col-sm-4">
-                    <h3 class="English">Contact </h3>
-                    <h3 class="Greek">Επικοινωνία </h3>
+                    <h3 >Contact </h3>
                     <br />
                     <h4>Demosoft@info.com</h4>
                     <h4>210-1223344</h4>
-                    <h4 class="English">Charokopu 86, Kalithea</h4>
-                    <h4 class="Greek">Χαροκόπου 86, Καλλιθέα</h4>
+                    <h4>Charokopu 86, Kalithea</h4>
                 </div>
 
                 <div class="col-sm-4">
-                    <h3 class="English">Stay connected </h3>
-                    <h3 class="Greek">Μείνετε συνδεδεμένοι  </h3>
+                    <h3>Stay connected </h3>
                     <br />
                     <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
                     <a href="https://www.youtube.com/" class="fa fa-youtube"></a>
@@ -84,16 +77,14 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <h3 class="English">Languages</h3>
-                    <h3 class="Greek">Γλώσσες</h3>
+                    <h3 >Languages</h3>
                     <br />
-                    <h4 class="LangSelect" onclick="ChangeLanguage('GR');">Greek-Ελ</h4>
-                    <h4 class="LangSelect" onclick="ChangeLanguage('EN');">English-En</h4>
+                    <h4 class="LangSelect" onclick="CLDAEN();">Greek-Ελ</h4>
+                    <h4 class="LangSelect">English-En</h4>
                     <br />
                 </div>
                 <h4 id="Copyrights" />
             </div>
-            <asp:HiddenField ID="LanguageHiddenField" runat="server"/>
         </footer>
     </form>
 </body>

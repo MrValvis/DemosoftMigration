@@ -11,19 +11,17 @@ namespace DemoSoftMigration.Pages
         string SQLHeaderResult;
         private SqlCommand Command;
         private SqlConnection ConnectionString;
-        string Language;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             #region Variable declaration and initialization
-            Language = Session["Language"].ToString();
-            SelectedType = Session["Type"].ToString();
 
             OrderDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
             RequiredDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
             ShippedDateTextbox.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            
-            LanguageHiddenField.Value = Language;
+
+
             //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + SelectedType + "');", true);
             var OrderID = "";
             var CustomerID = "";
@@ -112,24 +110,22 @@ namespace DemoSoftMigration.Pages
 
         }
 
-
         protected void OkButton_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('"+SelectedType+"');", true);
             #region Converting textbox data to fit for the database
             string CustomerId = CustomerIdTextbox.Text;
             long OrderId;
-            long EmployId = EmployeeIdTextbox.Text==""?0:Convert.ToInt64(EmployeeIdTextbox.Text);
+            long EmployId = EmployeeIdTextbox.Text == "" ? 0 : Convert.ToInt64(EmployeeIdTextbox.Text);
             DateTime OrdareDate = Convert.ToDateTime(OrderDateTextbox.Text);
             DateTime RequiredDate = Convert.ToDateTime(RequiredDateTextbox.Text);
             DateTime ShippedDate = Convert.ToDateTime(ShippedDateTextbox.Text);
-            int ShipVia = ShipviaTextbox.Text==""?0:Convert.ToInt32(ShipviaTextbox.Text);
-            decimal Freight = FreightTextbox.Text==""?0: Convert.ToDecimal(FreightTextbox.Text);
+            int ShipVia = ShipviaTextbox.Text == "" ? 0 : Convert.ToInt32(ShipviaTextbox.Text);
+            decimal Freight = FreightTextbox.Text == "" ? 0 : Convert.ToDecimal(FreightTextbox.Text);
             string ShipName = ShipNameTextbox.Text;
             string ShipAddress = ShipAddressTextbox.Text;
             string ShipCity = ShipCityTextbox.Text;
             string ShipRegion = ShipRegionTextbox.Text;
-            long ShipPostalCode = ShipPostalTextbox.Text==""?0:Convert.ToInt64(ShipPostalTextbox.Text);
+            long ShipPostalCode = ShipPostalTextbox.Text == "" ? 0 : Convert.ToInt64(ShipPostalTextbox.Text);
             string ShipCountry = ShipCountryTextbox.Text;
             #endregion
 
@@ -139,7 +135,7 @@ namespace DemoSoftMigration.Pages
                     {
                         try
                         {
-                            AddNewElement(Language, CustomerId, EmployId, OrdareDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry);
+                            AddNewElement("English", CustomerId, EmployId, OrdareDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry);
                             Response.Redirect("WebForm.aspx");
                         }
                         catch (Exception Error)
@@ -153,7 +149,7 @@ namespace DemoSoftMigration.Pages
                         try
                         {
                             OrderId = Convert.ToInt64(OrderIdTextbox.Text);
-                            ModifyElement(Language, OrderId, CustomerId, EmployId, OrdareDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry);
+                            ModifyElement("English", OrderId, CustomerId, EmployId, OrdareDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry);
                             Response.Redirect("WebForm.aspx");
                         }
                         catch (Exception Error)
@@ -168,30 +164,22 @@ namespace DemoSoftMigration.Pages
                         break;
                     }
             }
-
-
-            //if (Page.IsValid) { 
-            //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('IsValid');", true);
-            //}
-            //else { ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Is NOT Valid');", true); }
         }
 
-        protected void BackToMain_Click(object sender, EventArgs e){
-            Session["Language"] = LanguageHiddenField.Value;
+        protected void RedirectToHome_Click(object sender, EventArgs e)
+        {
             Response.Redirect("WebForm.aspx");
+        }
+
+        protected void ChangeLanguageToGreek_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DataActionPageGR.aspx");
         }
 
         #region No entry selected messange
         private void ErrorMessage()
         {
-            if (Language == "English")
-            {
-                ClientScript.RegisterStartupScript(GetType(), "Problem writing data in database", "alert('Ooops something went wrong on writing data to database!!');", true);
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(GetType(), "Πρόβλημα κατά την εγγραφή δεδομένων στην βάση δεδομένων", "alert('Οοουπς κάτι δεν πήγε καλά κατά την εγγραφή των δεδομένων στην βάση δεδομένων!');", true);
-            }
+            ClientScript.RegisterStartupScript(GetType(), "Problem writing data in database", "alert('Ooops something went wrong on writing data to database!!');", true);
         }
         #endregion
 
@@ -326,29 +314,14 @@ namespace DemoSoftMigration.Pages
                 Command.ExecuteNonQuery();
                 Command.Dispose();
 
-                if (Language == "Greek")
-                {
-                    SQLMessageResult = "Η διαδικασία ολοκληρώθηκε επιτυχώς";
-                    SQLHeaderResult = "Επιτυχία!";
-                }
-                else
-                {
-                    SQLMessageResult = "The function has completed!";
-                    SQLHeaderResult = "Successful!";
-                }
+                SQLMessageResult = "The function has completed!";
+                SQLHeaderResult = "Successful!";
             }
             catch (Exception Error)
             {
-                if (Language == "Greek")
-                {
-                    SQLMessageResult = $"Αντιμετωπίστηκε σφάλμα κατά την εκτέλεση της διαδικασίας! \n Κωδικός σφάλματος:{Error.HResult}";
-                    SQLHeaderResult = "Βρέθηκε σφάλμα!";
-                }
-                else
-                {
-                    SQLMessageResult = $"An error has encountered durning the operation! \n Error Code:{Error.HResult}";
-                    SQLHeaderResult = "Error encountered!";
-                }
+
+                SQLMessageResult = $"An error has encountered durning the operation! \n Error Code:{Error.HResult}";
+                SQLHeaderResult = "Error encountered!";
             }
             finally
             {
@@ -363,6 +336,45 @@ namespace DemoSoftMigration.Pages
 
         #endregion
 
- 
+        //protected void LanguageChange_Event(object sender, EventArgs e)
+        //{
+        //    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Test working');", true);
+        //    if (LanguageHiddenField.Value == "English")
+        //    {
+        //        OrderId.Text = "Order Id";
+        //        OrderIdTextbox.Text = "Auto incremental";
+        //        CustomerId.Text = "Customer Id";
+        //        EmployeeId.Text = "Employee Id";
+        //        OrderDate.Text = "Order Date";
+        //        RequiredDate.Text = "Required Date";
+        //        ShippedDate.Text = "Shipped Date";
+        //        Shipvia.Text = "Ship via";
+        //        Freight.Text = "Freight";
+        //        ShipName.Text = "Ship Name";
+        //        Shipaddress.Text = "Shipaddress";
+        //        ShipCity.Text = "Ship City";
+        //        ShipRegion.Text = "Ship Region";
+        //        ShipPostal.Text = "Ship Postal";
+        //        ShipCountry.Text = "Ship Country";
+        //    }
+        //    else
+        //    {
+        //        OrderId.Text = "Κωδικός παραγγελίας";
+        //        OrderIdTextbox.Text = "Αυτόματη αρίθμηση";
+        //        CustomerId.Text = "Κωδικός πελάτη";
+        //        EmployeeId.Text = "Κωδικός υπαλλήλου";
+        //        OrderDate.Text = "Ημ/νια παραγγελίας";
+        //        RequiredDate.Text = "Ημ/νια παραλαβής";
+        //        ShippedDate.Text = "Ημ/νια αποστολής";
+        //        Shipvia.Text = "Αποστολή μέσω";
+        //        Freight.Text = "Κόστος";
+        //        ShipName.Text = "Όνομα μεταφορικής";
+        //        Shipaddress.Text = "Διεύθηνση αποστολής";
+        //        ShipCity.Text = "Πόλη αποστολής";
+        //        ShipRegion.Text = "Περιοχή αποστολή";
+        //        ShipPostal.Text = "Ταχ.Κώδ.περιοχής";
+        //        ShipCountry.Text = "Χώρα αποστολής";
+        //    }
+        //}
     }
 }

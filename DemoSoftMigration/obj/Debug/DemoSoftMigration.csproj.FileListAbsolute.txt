@@ -1,9 +1,5 @@
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.IO.Compression.dll
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\VBCSCompiler.exe
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\obj\Debug\DemoSoftMigration.dll.licenses
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\obj\Debug\DemoSoftMigration.csproj.CoreCompileInputs.cache
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\ApplicationInsights.config
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\DemoSoftMigration.dll.config
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\DemoSoftMigration.dll
@@ -15,9 +11,13 @@ C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\csi
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\csi.exe.config
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\csi.rsp
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Microsoft.Win32.Primitives.dll
@@ -27,6 +27,7 @@ C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Sys
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.IO.Compression.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\System.IO.FileSystem.Primitives.dll
@@ -49,6 +50,7 @@ C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\Sys
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\vbc.exe
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\vbc.exe.config
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\vbc.rsp
+C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\VBCSCompiler.exe
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\Antlr3.Runtime.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\AspNet.ScriptManager.bootstrap.dll
@@ -230,8 +232,6 @@ C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\de\DevExpr
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\es\DevExpress.Xpo.v20.1.resources.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\ja\DevExpress.Xpo.v20.1.resources.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\bin\ru\DevExpress.Xpo.v20.1.resources.dll
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\obj\Debug\DemoSoftMigration.dll.licenses
-C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\obj\Debug\DemoSoftMigration.csproj.CoreCompileInputs.cache
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\obj\Debug\DemoSoftMigration.csproj.CopyComplete
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\obj\Debug\DemoSoftMigration.dll
 C:\Users\CODEX\Desktop\DemosoftMigration-master\DemoSoftMigration\obj\Debug\DemoSoftMigration.pdb

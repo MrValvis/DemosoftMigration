@@ -364,21 +364,21 @@ namespace DemoSoftMigration.Pages {
         protected global::DevExpress.Web.ASPxButton OkButton;
         
         /// <summary>
-        /// BackButton control.
+        /// RedirectToHome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton BackButton;
+        protected global::DevExpress.Web.ASPxButton RedirectToHome;
         
         /// <summary>
-        /// LanguageHiddenField control.
+        /// ChangeLanguageToGreek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField LanguageHiddenField;
+        protected global::DevExpress.Web.ASPxButton ChangeLanguageToGreek;
     }
 }

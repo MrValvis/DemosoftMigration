@@ -10,8 +10,6 @@ namespace DemoSoftMigration.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             OrderID = Convert.ToInt64(Session["OrderID"]);
-            string Language = Session["Language"].ToString();
-            LanguageHiddenField.Value = Language;
             
             //This line is used in item menu
             GridViewFeaturesHelper.SetupGlobalGridViewBehavior(ASPxGridViewData);
@@ -51,9 +49,14 @@ namespace DemoSoftMigration.Pages
         }
         #endregion
 
-        protected void ASPxOkButton_Click(object sender, EventArgs e)
+        protected void RedirectToHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("WebForm.aspx");
+            Response.Redirect("WebForm.aspx");
+        }
+
+        protected void ChangeLanguageToGreek_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HistoryGR.aspx");
         }
     }
 }

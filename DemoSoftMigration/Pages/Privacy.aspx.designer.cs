@@ -13,13 +13,22 @@ namespace DemoSoftMigration.Pages {
     public partial class Privacy {
         
         /// <summary>
-        /// form2 control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
+        /// RedirectToHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton RedirectToHome;
         
         /// <summary>
         /// RedirectToTerms control.
@@ -31,21 +40,12 @@ namespace DemoSoftMigration.Pages {
         protected global::DevExpress.Web.ASPxButton RedirectToTerms;
         
         /// <summary>
-        /// BackButton control.
+        /// ChangeLanguageToGreek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton BackButton;
-        
-        /// <summary>
-        /// LanguageHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField LanguageHiddenField;
+        protected global::DevExpress.Web.ASPxButton ChangeLanguageToGreek;
     }
 }

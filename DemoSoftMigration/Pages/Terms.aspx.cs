@@ -6,20 +6,21 @@ namespace DemoSoftMigration.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string Language = Session["Language"].ToString();
-            LanguageHiddenField.Value = Language;
         }
 
         protected void RedirectToPrivacy_Click(object sender, EventArgs e)
         {
-            var SelectedLanguage = LanguageHiddenField.Value.ToString();
-            Session["Language"] = SelectedLanguage;
             Response.Redirect("Privacy.aspx");
         }
 
-        protected void BackButton_Click(object sender, EventArgs e)
+        protected void RedirectToHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("WebForm.aspx");
+        }
+
+        protected void ChangeLanguageToGreek_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TermsGR.aspx");
         }
     }
 }
