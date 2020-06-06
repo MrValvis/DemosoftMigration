@@ -316,21 +316,27 @@ function DatagridHelp(Language) {
 //#region action data page : help button
 function DataHelp(Language) {
     if (Language === 'English') {
-        alert('English text help');
+        alert('Add\n' + "In this mode you can add a new order/entry in the database (All fields are optional to fill).\n\n" +
+            'Modify\n' + "In this mode you can modify the selected order/entry." +
+            'Inspect\n' + "In this mode you can ONLY inspect the selected order/entry.");
     }
     else {
-        alert("Ελληνικά");
+        alert('Προσθήκη\n' + "Σε αυτή τη λειτουργία μπορείτε να προσθέσετε μία νέα παραγγελία/εγγραφή στην βάση δεδομένων (Η συμπλήρωση των πεδίων δεν είναι υποχρεωτική).\n\n" +
+            'Τροποποίηση\n' + "Σε αυτή τη λειτουργία μπορείτε να τροποποιήσετε την επιλεγμένη παραγγελία/εγγραφή." +
+            'Έλεγχος\n' + "Σε αυτή τη λειτουργία μπορείτε ΜΟΝΟ να επιβλέψετε την επιλεγμένη παραγγελία εγγραφή.");
     }
 }
 //#endregion
 
 //#region History tab
-function HistoryHelp(Language) {
+function HistoryHelp(Language)  {
     if (Language === "English") {
-        alert('English');
+        alert('Modification history \n' +
+            "In this tab you can overview all the modifications that have done to the selected entry from the creation to latest modification.\n");
     }
     else {
-        alert('Greek');
+        alert('Ιστορικό τροποποιήσεων\n' +
+            "Σε αυτή την καρτέλα έχουμε μία σύνοψη όλων των τροποποιήσεων που έχουν πραγαματοποιηθεί στην συγκεκριμένη εγγραφή απο την δημιουργία της έως την τελευταία τροποποίηση.\n");
     }
 }
 //#endregion
