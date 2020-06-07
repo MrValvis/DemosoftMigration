@@ -71,7 +71,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="CustomerIdTextbox" runat="server" MaxLength="5" class="form-control" />
-                        <asp:RegularExpressionValidator ID="CustomerIdTextboxValidator" runat="server" ErrorMessage="Μόνο αγγλικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Κωδικός πελάτη&quot;" ForeColor="Red" ControlToValidate="CustomerIdTextbox" ValidationExpression="^[A-Za-z]*$" />
+                        <asp:RegularExpressionValidator ID="CustomerIdTextboxValidator" runat="server" ErrorMessage="Μόνο αγγλικοί και ελληνικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Κωδικός πελάτη&quot;" ForeColor="Red" ControlToValidate="CustomerIdTextbox" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -152,7 +152,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipCityTextbox" runat="server" MaxLength="15" class="form-control" />
-                        <asp:RegularExpressionValidator ID="ShipCityTextboxValidator" runat="server" ControlToValidate="ShipCityTextbox" ErrorMessage="Μόνο αγγλικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Πόλη αποστολής&quot;" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$" />
+                        <asp:RegularExpressionValidator ID="ShipCityTextboxValidator" runat="server" ControlToValidate="ShipCityTextbox" ErrorMessage="Μόνο αγγλικοί και ελληνικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Πόλη αποστολής&quot;" ForeColor="Red" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -161,7 +161,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipRegionTextbox" runat="server" MaxLength="15" class="form-control" />
-                        <asp:RegularExpressionValidator ID="ShipRegionTextboxValidator" runat="server" ControlToValidate="ShipRegionTextbox" ErrorMessage="Μόνο αγγλικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Διεύθηνση περιοχής&quot;" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$" />
+                        <asp:RegularExpressionValidator ID="ShipRegionTextboxValidator" runat="server" ControlToValidate="ShipRegionTextbox" ErrorMessage="Μόνο αγγλικοί και ελληνικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Διεύθηνση περιοχής&quot;" ForeColor="Red" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -179,7 +179,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipCountryTextbox" runat="server" MaxLength="15" class="form-control" />
-                        <asp:RegularExpressionValidator ID="ShipCountryTextboxnValidator" runat="server" ControlToValidate="ShipCountryTextbox" ErrorMessage="Μόνο αγγλικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Χώρα αποστολής&quot;" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" />
+                        <asp:RegularExpressionValidator ID="ShipCountryTextboxnValidator" runat="server" ControlToValidate="ShipCountryTextbox" ErrorMessage="Μόνο αγγλικοί και ελληνικοί χαρακτήρες επιτρέπονται στο πεδίο &quot;Χώρα αποστολής&quot;" ForeColor="Red" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>

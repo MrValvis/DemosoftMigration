@@ -73,7 +73,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="CustomerIdTextbox" runat="server" MaxLength="5" class="form-control" />
-                        <asp:RegularExpressionValidator ID="CustomerIdTextboxValidator" runat="server" ErrorMessage="Only english letters are allowed in Customer Id field" ForeColor="Red" ControlToValidate="CustomerIdTextbox" ValidationExpression="^[A-Za-z]*$" />
+                        <asp:RegularExpressionValidator ID="CustomerIdTextboxValidator" runat="server" ErrorMessage="Only english and greek letters are allowed in Customer Id field" ForeColor="Red" ControlToValidate="CustomerIdTextbox" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -154,7 +154,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipCityTextbox" runat="server" MaxLength="15" class="form-control" />
-                        <asp:RegularExpressionValidator ID="ShipCityTextboxValidator" runat="server" ControlToValidate="ShipCityTextbox" ErrorMessage="Only english letters are allowed in Ship city field" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$" />
+                        <asp:RegularExpressionValidator ID="ShipCityTextboxValidator" runat="server" ControlToValidate="ShipCityTextbox" ErrorMessage="Only english and greek letters are allowed in Ship city field" ForeColor="Red" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -163,7 +163,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipRegionTextbox" runat="server" MaxLength="15" class="form-control" />
-                        <asp:RegularExpressionValidator ID="ShipRegionTextboxValidator" runat="server" ControlToValidate="ShipRegionTextbox" ErrorMessage="Only english letters are allowed in Ship region field" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$" />
+                        <asp:RegularExpressionValidator ID="ShipRegionTextboxValidator" runat="server" ControlToValidate="ShipRegionTextbox" ErrorMessage="Only english and greek letters are allowed in Ship region field" ForeColor="Red" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>
@@ -181,7 +181,7 @@
                     </th>
                     <th>
                         <asp:TextBox ID="ShipCountryTextbox" runat="server" MaxLength="15" class="form-control" />
-                        <asp:RegularExpressionValidator ID="ShipCountryTextboxnValidator" runat="server" ControlToValidate="ShipCountryTextbox" ErrorMessage="Only english letters are allowed in Country field" ForeColor="Red" ValidationExpression="^[A-Za-z]*$" />
+                        <asp:RegularExpressionValidator ID="ShipCountryTextboxnValidator" runat="server" ControlToValidate="ShipCountryTextbox" ErrorMessage="Only english and greek letters are allowed in Country field" ForeColor="Red" ValidationExpression="^[A-Za-z\u0370-\u03ff\u1f00-\u1fff]*$" />
                     </th>
                 </tr>
                 <tr>
